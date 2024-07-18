@@ -1,0 +1,12 @@
+C:\Users\alden.paroni\source\repos\UnifierWebServicesLibrary\UnifierWebServicesLibrary\bin\Debug\net8.0\UnifierWebServicesLibrary.deps.json
+C:\Users\alden.paroni\source\repos\UnifierWebServicesLibrary\UnifierWebServicesLibrary\bin\Debug\net8.0\UnifierWebServicesLibrary.dll
+C:\Users\alden.paroni\source\repos\UnifierWebServicesLibrary\UnifierWebServicesLibrary\bin\Debug\net8.0\UnifierWebServicesLibrary.pdb
+C:\Users\alden.paroni\source\repos\UnifierWebServicesLibrary\UnifierWebServicesLibrary\obj\Debug\net8.0\UnifierWebServicesLibrary.csproj.AssemblyReference.cache
+C:\Users\alden.paroni\source\repos\UnifierWebServicesLibrary\UnifierWebServicesLibrary\obj\Debug\net8.0\UnifierWebServicesLibrary.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\alden.paroni\source\repos\UnifierWebServicesLibrary\UnifierWebServicesLibrary\obj\Debug\net8.0\UnifierWebServicesLibrary.AssemblyInfoInputs.cache
+C:\Users\alden.paroni\source\repos\UnifierWebServicesLibrary\UnifierWebServicesLibrary\obj\Debug\net8.0\UnifierWebServicesLibrary.AssemblyInfo.cs
+C:\Users\alden.paroni\source\repos\UnifierWebServicesLibrary\UnifierWebServicesLibrary\obj\Debug\net8.0\UnifierWebServicesLibrary.csproj.CoreCompileInputs.cache
+C:\Users\alden.paroni\source\repos\UnifierWebServicesLibrary\UnifierWebServicesLibrary\obj\Debug\net8.0\UnifierWebServicesLibrary.dll
+C:\Users\alden.paroni\source\repos\UnifierWebServicesLibrary\UnifierWebServicesLibrary\obj\Debug\net8.0\refint\UnifierWebServicesLibrary.dll
+C:\Users\alden.paroni\source\repos\UnifierWebServicesLibrary\UnifierWebServicesLibrary\obj\Debug\net8.0\UnifierWebServicesLibrary.pdb
+C:\Users\alden.paroni\source\repos\UnifierWebServicesLibrary\UnifierWebServicesLibrary\obj\Debug\net8.0\ref\UnifierWebServicesLibrary.dll
