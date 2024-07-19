@@ -10,3 +10,16 @@ C:\Users\alden.paroni\source\repos\UnifierWebServicesLibrary\BusinessProcessLibr
 C:\Users\alden.paroni\source\repos\UnifierWebServicesLibrary\BusinessProcessLibrary\obj\Debug\net8.0\refint\BusinessProcessLibrary.dll
 C:\Users\alden.paroni\source\repos\UnifierWebServicesLibrary\BusinessProcessLibrary\obj\Debug\net8.0\BusinessProcessLibrary.pdb
 C:\Users\alden.paroni\source\repos\UnifierWebServicesLibrary\BusinessProcessLibrary\obj\Debug\net8.0\ref\BusinessProcessLibrary.dll
+C:\Users\alden.paroni\Documents\web-services-git\c\UnifierWebServicesLibrary\BusinessProcessLibrary\obj\Debug\net8.0\BusinessProcessLibrary.csproj.AssemblyReference.cache
+C:\Users\alden.paroni\Documents\web-services-git\c\UnifierWebServicesLibrary\BusinessProcessLibrary\obj\Debug\net8.0\BusinessProcessLibrary.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\alden.paroni\Documents\web-services-git\c\UnifierWebServicesLibrary\BusinessProcessLibrary\obj\Debug\net8.0\BusinessProcessLibrary.AssemblyInfoInputs.cache
+C:\Users\alden.paroni\Documents\web-services-git\c\UnifierWebServicesLibrary\BusinessProcessLibrary\obj\Debug\net8.0\BusinessProcessLibrary.AssemblyInfo.cs
+C:\Users\alden.paroni\Documents\web-services-git\c\UnifierWebServicesLibrary\BusinessProcessLibrary\obj\Debug\net8.0\BusinessProcessLibrary.csproj.CoreCompileInputs.cache
+C:\Users\alden.paroni\Documents\web-services-git\c\UnifierWebServicesLibrary\BusinessProcessLibrary\obj\Debug\net8.0\BusinessProcessLibrary.sourcelink.json
+C:\Users\alden.paroni\Documents\web-services-git\c\UnifierWebServicesLibrary\BusinessProcessLibrary\obj\Debug\net8.0\BusinessProcessLibrary.dll
+C:\Users\alden.paroni\Documents\web-services-git\c\UnifierWebServicesLibrary\BusinessProcessLibrary\obj\Debug\net8.0\refint\BusinessProcessLibrary.dll
+C:\Users\alden.paroni\Documents\web-services-git\c\UnifierWebServicesLibrary\BusinessProcessLibrary\obj\Debug\net8.0\BusinessProcessLibrary.pdb
+C:\Users\alden.paroni\Documents\web-services-git\c\UnifierWebServicesLibrary\BusinessProcessLibrary\bin\Debug\net8.0\BusinessProcessLibrary.deps.json
+C:\Users\alden.paroni\Documents\web-services-git\c\UnifierWebServicesLibrary\BusinessProcessLibrary\bin\Debug\net8.0\BusinessProcessLibrary.dll
+C:\Users\alden.paroni\Documents\web-services-git\c\UnifierWebServicesLibrary\BusinessProcessLibrary\bin\Debug\net8.0\BusinessProcessLibrary.pdb
+C:\Users\alden.paroni\Documents\web-services-git\c\UnifierWebServicesLibrary\BusinessProcessLibrary\obj\Debug\net8.0\ref\BusinessProcessLibrary.dll

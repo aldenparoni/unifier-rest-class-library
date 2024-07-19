@@ -115,5 +115,73 @@ namespace BusinessProcessLibrary
         }
     }
 
+    public class ESI
+    {
+        [JsonProperty("rfi3rdPartyMS", NullValueHandling = NullValueHandling.Ignore)]
+        public string? ThirdPartyReviewers { get; set; }
 
+        [JsonProperty("rfiAssociatedRFIBP", NullValueHandling = NullValueHandling.Ignore)]
+        public string? AssociatedRFI { get; set; }
+
+        [JsonProperty("cppnamesysshellname", NullValueHandling = NullValueHandling.Ignore)]
+        public string? CPPName { get; set; }
+
+        [JsonProperty("cppnumbersysshellnum", NullValueHandling = NullValueHandling.Ignore)]
+        public string? CPPNumber { get; set; }
+
+        [JsonProperty("uasiContractReferenceDP", NullValueHandling = NullValueHandling.Ignore)]
+        public string? Contract { get; set; }
+
+        [JsonProperty("corCtrRefTB250", NullValueHandling = NullValueHandling.Ignore)]
+        public string? ContractorReference { get; set; }
+
+        [JsonProperty("urfiCostImpactPD", NullValueHandling = NullValueHandling.Ignore)]
+        public string? CostImpact { get; set; }
+
+        [JsonProperty("uuu_creation_date", NullValueHandling = NullValueHandling.Ignore)]
+        public string? CreationDate { get; set; }
+
+        [JsonProperty("creator_id", NullValueHandling = NullValueHandling.Ignore)]
+        public string? Creator { get; set; }
+
+        [JsonProperty("shortname", NullValueHandling = NullValueHandling.Ignore)]
+        public string? CreatorCompany { get; set; }
+
+        [JsonProperty("uasiDecisionReturnPD", NullValueHandling = NullValueHandling.Ignore)]
+        public string? Decision { get; set; }
+
+        [JsonProperty("uasiDueDateDOP", NullValueHandling = NullValueHandling.Ignore)]
+        public string? DueDate { get; set; }
+
+        [JsonProperty("uasiStatus", NullValueHandling = NullValueHandling.Ignore)]
+        public string? ESIStatus { get; set; }
+
+        [JsonProperty("Notes", NullValueHandling = NullValueHandling.Ignore)]
+        public string? Notes { get; set; }
+
+        [JsonProperty("genPrePublishPathTB250", NullValueHandling = NullValueHandling.Ignore)]
+        public string? PrefixPublishPath { get; set; }
+
+        [JsonProperty("uasiDecisionPD", NullValueHandling = NullValueHandling.Ignore)]
+        public string? ProposedDecision { get; set; }
+
+        [JsonProperty("uuu_dm_publish_path", NullValueHandling = NullValueHandling.Ignore)]
+        public string? PublishPath { get; set; }
+
+        [JsonProperty("record_no", NullValueHandling = NullValueHandling.Ignore)]
+        public string? RecordNo { get; set; }
+
+        [JsonProperty("urfiScheduleImpactPD", NullValueHandling = NullValueHandling.Ignore)]
+        public string? ScheduleImpact { get; set; }
+
+        [JsonProperty("ugenSpecifcatnsMTL4000", NullValueHandling = NullValueHandling.Ignore)]
+        public string? Specifications { get; set; }
+
+        [JsonProperty("status", NullValueHandling = NullValueHandling.Ignore)]
+        public string? Status { get; set; }
+
+        [JsonProperty("title", NullValueHandling = NullValueHandling.Ignore)]
+        public string? Title { get; set; }
+
+    }
 }
