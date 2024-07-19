@@ -8,6 +8,6 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = UnifierWebServicesLibrary
-build_property.ProjectDir = C:\Users\alden.paroni\source\repos\UnifierWebServicesLibrary\UnifierWebServicesLibrary\
+build_property.ProjectDir = C:\Users\alden.paroni\Documents\web-services-git\c\UnifierWebServicesLibrary\UnifierWebServicesLibrary\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 

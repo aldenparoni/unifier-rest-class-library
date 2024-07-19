@@ -60,11 +60,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\alden.paroni\\source\\repos\\UnifierWebServicesLibrary\\BusinessProcessLibrary\\BusinessProcessLibrary.csproj",
+      "projectUniqueName": "C:\\Users\\alden.paroni\\Documents\\web-services-git\\c\\UnifierWebServicesLibrary\\BusinessProcessLibrary\\BusinessProcessLibrary.csproj",
       "projectName": "BusinessProcessLibrary",
-      "projectPath": "C:\\Users\\alden.paroni\\source\\repos\\UnifierWebServicesLibrary\\BusinessProcessLibrary\\BusinessProcessLibrary.csproj",
+      "projectPath": "C:\\Users\\alden.paroni\\Documents\\web-services-git\\c\\UnifierWebServicesLibrary\\BusinessProcessLibrary\\BusinessProcessLibrary.csproj",
       "packagesPath": "C:\\Users\\alden.paroni\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\alden.paroni\\source\\repos\\UnifierWebServicesLibrary\\BusinessProcessLibrary\\obj\\",
+      "outputPath": "C:\\Users\\alden.paroni\\Documents\\web-services-git\\c\\UnifierWebServicesLibrary\\BusinessProcessLibrary\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\alden.paroni\\AppData\\Roaming\\NuGet\\NuGet.Config",

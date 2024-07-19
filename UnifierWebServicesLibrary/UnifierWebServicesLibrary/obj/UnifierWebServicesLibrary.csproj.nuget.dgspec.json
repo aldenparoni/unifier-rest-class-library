@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\alden.paroni\\source\\repos\\UnifierWebServicesLibrary\\UnifierWebServicesLibrary\\UnifierWebServicesLibrary.csproj": {}
+    "C:\\Users\\alden.paroni\\Documents\\web-services-git\\c\\UnifierWebServicesLibrary\\UnifierWebServicesLibrary\\UnifierWebServicesLibrary.csproj": {}
   },
   "projects": {
-    "C:\\Users\\alden.paroni\\source\\repos\\UnifierWebServicesLibrary\\UnifierWebServicesLibrary\\UnifierWebServicesLibrary.csproj": {
+    "C:\\Users\\alden.paroni\\Documents\\web-services-git\\c\\UnifierWebServicesLibrary\\UnifierWebServicesLibrary\\UnifierWebServicesLibrary.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\alden.paroni\\source\\repos\\UnifierWebServicesLibrary\\UnifierWebServicesLibrary\\UnifierWebServicesLibrary.csproj",
+        "projectUniqueName": "C:\\Users\\alden.paroni\\Documents\\web-services-git\\c\\UnifierWebServicesLibrary\\UnifierWebServicesLibrary\\UnifierWebServicesLibrary.csproj",
         "projectName": "UnifierWebServicesLibrary",
-        "projectPath": "C:\\Users\\alden.paroni\\source\\repos\\UnifierWebServicesLibrary\\UnifierWebServicesLibrary\\UnifierWebServicesLibrary.csproj",
+        "projectPath": "C:\\Users\\alden.paroni\\Documents\\web-services-git\\c\\UnifierWebServicesLibrary\\UnifierWebServicesLibrary\\UnifierWebServicesLibrary.csproj",
         "packagesPath": "C:\\Users\\alden.paroni\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\alden.paroni\\source\\repos\\UnifierWebServicesLibrary\\UnifierWebServicesLibrary\\obj\\",
+        "outputPath": "C:\\Users\\alden.paroni\\Documents\\web-services-git\\c\\UnifierWebServicesLibrary\\UnifierWebServicesLibrary\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\alden.paroni\\AppData\\Roaming\\NuGet\\NuGet.Config",

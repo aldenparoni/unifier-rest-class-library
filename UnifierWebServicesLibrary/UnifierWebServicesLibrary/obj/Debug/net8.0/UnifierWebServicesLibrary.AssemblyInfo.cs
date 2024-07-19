@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("UnifierWebServicesLibrary")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3e2271a31bfe8286f201d5ea6c86246894abb6e8")]
 [assembly: System.Reflection.AssemblyProductAttribute("UnifierWebServicesLibrary")]
 [assembly: System.Reflection.AssemblyTitleAttribute("UnifierWebServicesLibrary")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

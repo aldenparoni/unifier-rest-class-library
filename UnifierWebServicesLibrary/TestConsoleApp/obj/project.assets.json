@@ -137,11 +137,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\alden.paroni\\source\\repos\\UnifierWebServicesLibrary\\TestConsoleApp\\TestConsoleApp.csproj",
+      "projectUniqueName": "C:\\Users\\alden.paroni\\Documents\\web-services-git\\c\\UnifierWebServicesLibrary\\TestConsoleApp\\TestConsoleApp.csproj",
       "projectName": "TestConsoleApp",
-      "projectPath": "C:\\Users\\alden.paroni\\source\\repos\\UnifierWebServicesLibrary\\TestConsoleApp\\TestConsoleApp.csproj",
+      "projectPath": "C:\\Users\\alden.paroni\\Documents\\web-services-git\\c\\UnifierWebServicesLibrary\\TestConsoleApp\\TestConsoleApp.csproj",
       "packagesPath": "C:\\Users\\alden.paroni\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\alden.paroni\\source\\repos\\UnifierWebServicesLibrary\\TestConsoleApp\\obj\\",
+      "outputPath": "C:\\Users\\alden.paroni\\Documents\\web-services-git\\c\\UnifierWebServicesLibrary\\TestConsoleApp\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\alden.paroni\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -158,11 +158,11 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "C:\\Users\\alden.paroni\\source\\repos\\UnifierWebServicesLibrary\\BusinessProcessLibrary\\BusinessProcessLibrary.csproj": {
-              "projectPath": "C:\\Users\\alden.paroni\\source\\repos\\UnifierWebServicesLibrary\\BusinessProcessLibrary\\BusinessProcessLibrary.csproj"
+            "C:\\Users\\alden.paroni\\Documents\\web-services-git\\c\\UnifierWebServicesLibrary\\BusinessProcessLibrary\\BusinessProcessLibrary.csproj": {
+              "projectPath": "C:\\Users\\alden.paroni\\Documents\\web-services-git\\c\\UnifierWebServicesLibrary\\BusinessProcessLibrary\\BusinessProcessLibrary.csproj"
             },
-            "C:\\Users\\alden.paroni\\source\\repos\\UnifierWebServicesLibrary\\UnifierWebServicesLibrary\\UnifierWebServicesLibrary.csproj": {
-              "projectPath": "C:\\Users\\alden.paroni\\source\\repos\\UnifierWebServicesLibrary\\UnifierWebServicesLibrary\\UnifierWebServicesLibrary.csproj"
+            "C:\\Users\\alden.paroni\\Documents\\web-services-git\\c\\UnifierWebServicesLibrary\\UnifierWebServicesLibrary\\UnifierWebServicesLibrary.csproj": {
+              "projectPath": "C:\\Users\\alden.paroni\\Documents\\web-services-git\\c\\UnifierWebServicesLibrary\\UnifierWebServicesLibrary\\UnifierWebServicesLibrary.csproj"
             }
           }
         }
