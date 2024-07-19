@@ -21,7 +21,7 @@ namespace UnifierWebServicesLibrary
         /// <returns>The bearer token that will be used during the console app's runtime</returns>
         public static string GetAuthToken(int environment, string username, string password)
         {
-            Console.WriteLine("Please wait as we generate an auth token for you...");
+            Console.WriteLine("\nPlease wait as we generate an auth token for you...");
             RestClientOptions? options;
 
             // Set environment to Production

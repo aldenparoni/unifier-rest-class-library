@@ -115,73 +115,78 @@ namespace BusinessProcessLibrary
         }
     }
 
-    public class ESI
+    // Engineer's Supplemental Instructions (ESI) - a workflow BP I will test
+    public class ESI(string? thirdPartyReviewers, string? associatedRFI, string? cppName, string? cppNumber, string? contract,
+        string? contractorReference, string? costImpact, string? creationDate, string? creator, string? creatorCompany,
+        string? decision, string? dueDate, string? esiStatus, string? notes, string? prefixPublishPath, string? proposedDecision,
+        string? publishPath, string? recordNo, string? scheduleImpact, string? specifications, string? status, string? title)
     {
         [JsonProperty("rfi3rdPartyMS", NullValueHandling = NullValueHandling.Ignore)]
-        public string? ThirdPartyReviewers { get; set; }
+        public string? ThirdPartyReviewers { get; set; } = thirdPartyReviewers;
 
         [JsonProperty("rfiAssociatedRFIBP", NullValueHandling = NullValueHandling.Ignore)]
-        public string? AssociatedRFI { get; set; }
+        public string? AssociatedRFI { get; set; } = associatedRFI;
 
         [JsonProperty("cppnamesysshellname", NullValueHandling = NullValueHandling.Ignore)]
-        public string? CPPName { get; set; }
+        public string? CPPName { get; set; } = cppName;
 
         [JsonProperty("cppnumbersysshellnum", NullValueHandling = NullValueHandling.Ignore)]
-        public string? CPPNumber { get; set; }
+        public string? CPPNumber { get; set; } = cppNumber;
 
         [JsonProperty("uasiContractReferenceDP", NullValueHandling = NullValueHandling.Ignore)]
-        public string? Contract { get; set; }
+        public string? Contract { get; set; } = contract;
 
         [JsonProperty("corCtrRefTB250", NullValueHandling = NullValueHandling.Ignore)]
-        public string? ContractorReference { get; set; }
+        public string? ContractorReference { get; set; } = contractorReference;
 
         [JsonProperty("urfiCostImpactPD", NullValueHandling = NullValueHandling.Ignore)]
-        public string? CostImpact { get; set; }
+        public string? CostImpact { get; set; } = costImpact;
 
         [JsonProperty("uuu_creation_date", NullValueHandling = NullValueHandling.Ignore)]
-        public string? CreationDate { get; set; }
+        public string? CreationDate { get; set; } = creationDate;
 
         [JsonProperty("creator_id", NullValueHandling = NullValueHandling.Ignore)]
-        public string? Creator { get; set; }
+        public string? Creator { get; set; } = creator;
 
         [JsonProperty("shortname", NullValueHandling = NullValueHandling.Ignore)]
-        public string? CreatorCompany { get; set; }
+        public string? CreatorCompany { get; set; } = creatorCompany;
 
         [JsonProperty("uasiDecisionReturnPD", NullValueHandling = NullValueHandling.Ignore)]
-        public string? Decision { get; set; }
+        public string? Decision { get; set; } = decision;
 
         [JsonProperty("uasiDueDateDOP", NullValueHandling = NullValueHandling.Ignore)]
-        public string? DueDate { get; set; }
+        public string? DueDate { get; set; } = dueDate;
 
         [JsonProperty("uasiStatus", NullValueHandling = NullValueHandling.Ignore)]
-        public string? ESIStatus { get; set; }
+        public string? ESIStatus { get; set; } = esiStatus;
 
         [JsonProperty("Notes", NullValueHandling = NullValueHandling.Ignore)]
-        public string? Notes { get; set; }
+        public string? Notes { get; set; } = notes;
 
         [JsonProperty("genPrePublishPathTB250", NullValueHandling = NullValueHandling.Ignore)]
-        public string? PrefixPublishPath { get; set; }
+        public string? PrefixPublishPath { get; set; } = prefixPublishPath;
 
         [JsonProperty("uasiDecisionPD", NullValueHandling = NullValueHandling.Ignore)]
-        public string? ProposedDecision { get; set; }
+        public string? ProposedDecision { get; set; } = proposedDecision;
 
         [JsonProperty("uuu_dm_publish_path", NullValueHandling = NullValueHandling.Ignore)]
-        public string? PublishPath { get; set; }
+        public string? PublishPath { get; set; } = publishPath;
 
         [JsonProperty("record_no", NullValueHandling = NullValueHandling.Ignore)]
-        public string? RecordNo { get; set; }
+        public string? RecordNo { get; set; } = recordNo;
 
         [JsonProperty("urfiScheduleImpactPD", NullValueHandling = NullValueHandling.Ignore)]
-        public string? ScheduleImpact { get; set; }
+        public string? ScheduleImpact { get; set; } = scheduleImpact;
 
         [JsonProperty("ugenSpecifcatnsMTL4000", NullValueHandling = NullValueHandling.Ignore)]
-        public string? Specifications { get; set; }
+        public string? Specifications { get; set; } = specifications;
 
         [JsonProperty("status", NullValueHandling = NullValueHandling.Ignore)]
-        public string? Status { get; set; }
+        public string? Status { get; set; } = status;
 
         [JsonProperty("title", NullValueHandling = NullValueHandling.Ignore)]
-        public string? Title { get; set; }
-
+        public string? Title { get; set; } = title;
     }
+
+    // Canvassing Efforts - a non-workflow BP I will test
 }
