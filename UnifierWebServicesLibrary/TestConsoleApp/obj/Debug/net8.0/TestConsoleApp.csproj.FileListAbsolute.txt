@@ -28,8 +28,10 @@ C:\Users\alden.paroni\Documents\web-services-git\c\UnifierWebServicesLibrary\Tes
 C:\Users\alden.paroni\Documents\web-services-git\c\UnifierWebServicesLibrary\TestConsoleApp\bin\Debug\net8.0\Newtonsoft.Json.dll
 C:\Users\alden.paroni\Documents\web-services-git\c\UnifierWebServicesLibrary\TestConsoleApp\bin\Debug\net8.0\RestSharp.dll
 C:\Users\alden.paroni\Documents\web-services-git\c\UnifierWebServicesLibrary\TestConsoleApp\bin\Debug\net8.0\BusinessProcessLibrary.dll
+C:\Users\alden.paroni\Documents\web-services-git\c\UnifierWebServicesLibrary\TestConsoleApp\bin\Debug\net8.0\ConsoleAppLibrary.dll
 C:\Users\alden.paroni\Documents\web-services-git\c\UnifierWebServicesLibrary\TestConsoleApp\bin\Debug\net8.0\UnifierWebServicesLibrary.dll
 C:\Users\alden.paroni\Documents\web-services-git\c\UnifierWebServicesLibrary\TestConsoleApp\bin\Debug\net8.0\BusinessProcessLibrary.pdb
+C:\Users\alden.paroni\Documents\web-services-git\c\UnifierWebServicesLibrary\TestConsoleApp\bin\Debug\net8.0\ConsoleAppLibrary.pdb
 C:\Users\alden.paroni\Documents\web-services-git\c\UnifierWebServicesLibrary\TestConsoleApp\bin\Debug\net8.0\UnifierWebServicesLibrary.pdb
 C:\Users\alden.paroni\Documents\web-services-git\c\UnifierWebServicesLibrary\TestConsoleApp\obj\Debug\net8.0\TestConsoleApp.csproj.AssemblyReference.cache
 C:\Users\alden.paroni\Documents\web-services-git\c\UnifierWebServicesLibrary\TestConsoleApp\obj\Debug\net8.0\TestConsoleApp.GeneratedMSBuildEditorConfig.editorconfig

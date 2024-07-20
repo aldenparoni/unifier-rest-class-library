@@ -13,6 +13,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\BusinessProcessLibrary\BusinessProcessLibrary.csproj" />
+    <ProjectReference Include="..\ConsoleAppLibrary\ConsoleAppLibrary.csproj" />
     <ProjectReference Include="..\UnifierWebServicesLibrary\UnifierWebServicesLibrary.csproj" />
   </ItemGroup>
 

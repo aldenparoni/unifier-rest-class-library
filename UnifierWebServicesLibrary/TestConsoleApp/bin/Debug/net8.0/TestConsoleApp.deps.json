@@ -9,6 +9,7 @@
       "TestConsoleApp/1.0.0": {
         "dependencies": {
           "BusinessProcessLibrary": "1.0.0",
+          "ConsoleAppLibrary": "1.0.0",
           "Newtonsoft.Json": "13.0.3",
           "UnifierWebServicesLibrary": "1.0.0"
         },
@@ -38,6 +39,15 @@
         },
         "runtime": {
           "BusinessProcessLibrary.dll": {}
+        }
+      },
+      "ConsoleAppLibrary/1.0.0": {
+        "dependencies": {
+          "BusinessProcessLibrary": "1.0.0",
+          "UnifierWebServicesLibrary": "1.0.0"
+        },
+        "runtime": {
+          "ConsoleAppLibrary.dll": {}
         }
       },
       "UnifierWebServicesLibrary/1.0.0": {
@@ -72,6 +82,11 @@
       "hashPath": "restsharp.111.3.0.nupkg.sha512"
     },
     "BusinessProcessLibrary/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "ConsoleAppLibrary/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

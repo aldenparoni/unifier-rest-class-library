@@ -17,5 +17,17 @@ namespace ConsoleAppLibrary
 
             IntegrationUser user = new(userEnv, username, password);
         }
+
+        public static void GetRecordApp(IntegrationUser user)
+        {
+            Console.Write("Enter the project number: ");
+            string? projectNum = Console.ReadLine();
+            Console.Write("Enter the name of the business process (type carefully): ");
+            string? bpName = Console.ReadLine();
+            Console.Write("Enter the record number: ");
+            string? recordNum = Console.ReadLine(); 
+            GetRecordInput input = new(bpName, recordNum);
+            UnifierRequests.GetBPRecord(user, projectNum, input);
+        }
     }
 }

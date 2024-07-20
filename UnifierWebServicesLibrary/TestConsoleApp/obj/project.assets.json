@@ -41,6 +41,20 @@
           "bin/placeholder/BusinessProcessLibrary.dll": {}
         }
       },
+      "ConsoleAppLibrary/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "dependencies": {
+          "BusinessProcessLibrary": "1.0.0",
+          "UnifierWebServicesLibrary": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/ConsoleAppLibrary.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/ConsoleAppLibrary.dll": {}
+        }
+      },
       "UnifierWebServicesLibrary/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v8.0",
@@ -118,6 +132,11 @@
       "path": "../BusinessProcessLibrary/BusinessProcessLibrary.csproj",
       "msbuildProject": "../BusinessProcessLibrary/BusinessProcessLibrary.csproj"
     },
+    "ConsoleAppLibrary/1.0.0": {
+      "type": "project",
+      "path": "../ConsoleAppLibrary/ConsoleAppLibrary.csproj",
+      "msbuildProject": "../ConsoleAppLibrary/ConsoleAppLibrary.csproj"
+    },
     "UnifierWebServicesLibrary/1.0.0": {
       "type": "project",
       "path": "../UnifierWebServicesLibrary/UnifierWebServicesLibrary.csproj",
@@ -127,6 +146,7 @@
   "projectFileDependencyGroups": {
     "net8.0": [
       "BusinessProcessLibrary >= 1.0.0",
+      "ConsoleAppLibrary >= 1.0.0",
       "Newtonsoft.Json >= 13.0.3",
       "UnifierWebServicesLibrary >= 1.0.0"
     ]
@@ -160,6 +180,9 @@
           "projectReferences": {
             "C:\\Users\\alden.paroni\\Documents\\web-services-git\\c\\UnifierWebServicesLibrary\\BusinessProcessLibrary\\BusinessProcessLibrary.csproj": {
               "projectPath": "C:\\Users\\alden.paroni\\Documents\\web-services-git\\c\\UnifierWebServicesLibrary\\BusinessProcessLibrary\\BusinessProcessLibrary.csproj"
+            },
+            "C:\\Users\\alden.paroni\\Documents\\web-services-git\\c\\UnifierWebServicesLibrary\\ConsoleAppLibrary\\ConsoleAppLibrary.csproj": {
+              "projectPath": "C:\\Users\\alden.paroni\\Documents\\web-services-git\\c\\UnifierWebServicesLibrary\\ConsoleAppLibrary\\ConsoleAppLibrary.csproj"
             },
             "C:\\Users\\alden.paroni\\Documents\\web-services-git\\c\\UnifierWebServicesLibrary\\UnifierWebServicesLibrary\\UnifierWebServicesLibrary.csproj": {
               "projectPath": "C:\\Users\\alden.paroni\\Documents\\web-services-git\\c\\UnifierWebServicesLibrary\\UnifierWebServicesLibrary\\UnifierWebServicesLibrary.csproj"

@@ -1,5 +1,5 @@
 ﻿using UnifierWebServicesLibrary;
-using BusinessProcessLibrary;
+using ConsoleAppLibrary;
 using Newtonsoft.Json;
 
 namespace TestConsoleApp
@@ -38,14 +38,7 @@ namespace TestConsoleApp
                     if (userNav == 1)
                     {
                         Console.WriteLine("\nYou have selected 1: Get a Business Process record");
-                        Console.Write("Enter the project number: ");
-                        string? projectNum = Console.ReadLine();
-                        Console.Write("Enter the name of the business process (type carefully): ");
-                        string? bpName = Console.ReadLine();
-                        Console.Write("Enter the record number: ");
-                        string? recordNum = Console.ReadLine();
-                        GetRecordInput input = new(bpName, recordNum);
-                        UnifierRequests.GetBPRecord(user, projectNum, input);
+                        ConsoleAppFunctions.GetRecordApp(user);
                     }
                     else if (userNav == 2)
                     {
