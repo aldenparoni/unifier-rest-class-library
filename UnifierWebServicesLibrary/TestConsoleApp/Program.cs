@@ -43,15 +43,6 @@ namespace TestConsoleApp
                     else if (userNav == 2)
                     {
                         Console.WriteLine("\nYou have selected 2: Create a new Business Process record");
-                        Console.Write("Enter the project number: ");
-                        string? projectNum = Console.ReadLine();
-                        Console.Write("Enter the name of the business process (type carefully): ");
-                        string? bpName = Console.ReadLine();
-                        if (projectNum != null && bpName == "ESI")
-                        {
-                            // JSONBody<Options, List<ESI>> json = new JSONBody<Options, List<ESI>>(new Options(projectNum, bpName), new ESI());
-                            // string? body = JsonConvert.SerializeObject(json);
-                        }
                     }
                     else if (userNav == 3)
                     {

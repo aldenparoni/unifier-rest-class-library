@@ -29,5 +29,10 @@ namespace ConsoleAppLibrary
             GetRecordInput input = new(bpName, recordNum);
             UnifierRequests.GetBPRecord(user, projectNum, input);
         }
+
+        public static void CreateRecordApp(IntegrationUser user)
+        {
+
+        }
     }
 }
