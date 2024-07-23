@@ -1,6 +1,5 @@
 ﻿using UnifierWebServicesLibrary;
 using ConsoleAppLibrary;
-using Newtonsoft.Json;
 
 namespace TestConsoleApp
 {
@@ -13,8 +12,8 @@ namespace TestConsoleApp
 
             Console.Write("Enter 0 for Production, or 1 for Stage: ");
             int userEnv = Convert.ToInt32(Console.ReadLine());
-            Console.Write("Enter your username: ");
-            string? username = Console.ReadLine();
+            Console.Write("Enter your username: $$");
+            string? username = "$$" + Console.ReadLine();
             Console.Write("Enter your password: ");
             string? password = UnifierRequests.ReadPassword();
 
@@ -43,6 +42,7 @@ namespace TestConsoleApp
                     else if (userNav == 2)
                     {
                         Console.WriteLine("\nYou have selected 2: Create a new Business Process record");
+                        ConsoleAppFunctions.CreateRecordApp(user);
                     }
                     else if (userNav == 3)
                     {

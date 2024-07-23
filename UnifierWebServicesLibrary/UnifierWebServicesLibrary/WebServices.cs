@@ -62,14 +62,20 @@ namespace UnifierWebServicesLibrary
         /// <param name="user">The IntegrationUser object containing environment and auth token.</param>
         /// <param name="projectNum">The shell number to navigate to.</param>
         /// <param name="input">The GetRecordInput object to be serialized as a JSON param for the REST call.</param>
-        public static void GetBPRecord(IntegrationUser user, string projectNum, GetRecordInput input)
+        public static string GetBPRecord(IntegrationUser user, string projectNum, GetRecordInput input)
         {
             var client = SetClient(user.Environment);
             var request = new RestRequest($"/ws/rest/service/v1/bp/record/{projectNum}", Method.Get);
             string? inputParam = JsonConvert.SerializeObject(input);
             request.AddHeader("Authorization", $"Bearer {user.Token}");
             request.AddParameter("input", inputParam);
-            var response = ExecuteResponse(client, request);
+            var response = client.Execute(request);
+            if (response.Content != null)
+            {
+                Console.WriteLine("Displaying the resulting json...\n");
+                return response.Content;
+            }
+            return string.Empty;
         }
 
         // public static void CreateBPRecord()
