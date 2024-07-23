@@ -10,97 +10,97 @@ namespace BusinessProcessLibrary
         public string? InContract { get; set; }
 
         [JsonProperty("punInspectDescTB", NullValueHandling = NullValueHandling.Ignore)]
-        public string? InspectionDescription { get; set; } 
+        public string? InspectionDescription { get; set; }
 
         [JsonProperty("uuu_latitude", NullValueHandling = NullValueHandling.Ignore)]
-        public string? Latitude { get; set; } 
+        public string? Latitude { get; set; }
 
         [JsonProperty("uuu_record_last_update_date", NullValueHandling = NullValueHandling.Ignore)]
-        public string? RecordLastUpdateDate { get; set; } 
+        public string? RecordLastUpdateDate { get; set; }
 
         [JsonProperty("punDescriptionRTF", NullValueHandling = NullValueHandling.Ignore)]
-        public string? ItemDescription { get; set; } 
+        public string? ItemDescription { get; set; }
 
         [JsonProperty("punCreateSuggest", NullValueHandling = NullValueHandling.Ignore)]
-        public string? SuggestedCreatedPromptedBy { get; set; } 
+        public string? SuggestedCreatedPromptedBy { get; set; }
 
         [JsonProperty("punLocateDescripTB", NullValueHandling = NullValueHandling.Ignore)]
-        public string? AdditionalLocationDescriptors { get; set; } 
+        public string? AdditionalLocationDescriptors { get; set; }
 
         [JsonProperty("punStationYNPD", NullValueHandling = NullValueHandling.Ignore)]
-        public string? Station { get; set; } 
+        public string? Station { get; set; }
 
         [JsonProperty("punRecordNoBPC", NullValueHandling = NullValueHandling.Ignore)]
-        public string? PunchlistRecordNo { get; set; } 
+        public string? PunchlistRecordNo { get; set; }
 
         [JsonProperty("punDisciplineMS", NullValueHandling = NullValueHandling.Ignore)]
-        public string? Discipline { get; set; } 
+        public string? Discipline { get; set; }
 
         [JsonProperty("punObservedDateDP", NullValueHandling = NullValueHandling.Ignore)]
-        public string? ObservedDate { get; set; } 
+        public string? ObservedDate { get; set; }
 
         [JsonProperty("uuu_longitude", NullValueHandling = NullValueHandling.Ignore)]
-        public string? Longitude { get; set; } 
+        public string? Longitude { get; set; }
 
         [JsonProperty("title", NullValueHandling = NullValueHandling.Ignore)]
-        public string? Title { get; set; } 
+        public string? Title { get; set; }
 
         [JsonProperty("punProposedSolutionRTF", NullValueHandling = NullValueHandling.Ignore)]
-        public string? ProposedSolution { get; set; } 
+        public string? ProposedSolution { get; set; }
 
         [JsonProperty("punInspectDateDP", NullValueHandling = NullValueHandling.Ignore)]
-        public string? InspectionDate { get; set; } 
+        public string? InspectionDate { get; set; }
 
         [JsonProperty("record_no", NullValueHandling = NullValueHandling.Ignore)]
-        public string? RecordNo { get; set; } 
+        public string? RecordNo { get; set; }
 
         [JsonProperty("dtShellPK", NullValueHandling = NullValueHandling.Ignore)]
-        public string? TargetShell { get; set; } 
+        public string? TargetShell { get; set; }
 
         [JsonProperty("punRecordClosedDP", NullValueHandling = NullValueHandling.Ignore)]
-        public string? DecisionDate { get; set; } 
+        public string? DecisionDate { get; set; }
 
         [JsonProperty("uuu_bp_record_url", NullValueHandling = NullValueHandling.Ignore)]
-        public string? BusinessProcessRecordURL { get; set; } 
+        public string? BusinessProcessRecordURL { get; set; }
 
         [JsonProperty("ugenAreaPK", NullValueHandling = NullValueHandling.Ignore)]
-        public string? Area { get; set; } 
+        public string? Area { get; set; }
 
         [JsonProperty("subrDrawingNumDP", NullValueHandling = NullValueHandling.Ignore)]
-        public string? DrawingNumber { get; set; } 
+        public string? DrawingNumber { get; set; }
 
         [JsonProperty("uxpunStaNumTB16", NullValueHandling = NullValueHandling.Ignore)]
-        public string? StationingNumber { get; set; } 
+        public string? StationingNumber { get; set; }
 
         [JsonProperty("uuu_creation_date", NullValueHandling = NullValueHandling.Ignore)]
-        public string? CreationDate { get; set; } 
+        public string? CreationDate { get; set; }
 
         [JsonProperty("cppnamesysshellname", NullValueHandling = NullValueHandling.Ignore)]
-        public string? CPPName { get; set; } 
+        public string? CPPName { get; set; }
 
         [JsonProperty("punPunchlistSourcePK", NullValueHandling = NullValueHandling.Ignore)]
-        public string? ItemAttributedTo { get; set; } 
+        public string? ItemAttributedTo { get; set; }
 
         [JsonProperty("punPriorityPD", NullValueHandling = NullValueHandling.Ignore)]
-        public string? Priority { get; set; } 
+        public string? Priority { get; set; }
 
         [JsonProperty("punSegmentsPD", NullValueHandling = NullValueHandling.Ignore)]
-        public string? ProjectSegment { get; set; } 
+        public string? ProjectSegment { get; set; }
 
         [JsonProperty("punMeritReasonTB", NullValueHandling = NullValueHandling.Ignore)]
         public string? Justification { get; set; }
 
         [JsonProperty("punContract", NullValueHandling = NullValueHandling.Ignore)]
-        public string? AssociatedContract { get; set; } 
+        public string? AssociatedContract { get; set; }
 
         [JsonProperty("cppnumbersysshellnum", NullValueHandling = NullValueHandling.Ignore)]
-        public string? CPPNumber { get; set; } 
+        public string? CPPNumber { get; set; }
 
         [JsonProperty("creator_id", NullValueHandling = NullValueHandling.Ignore)]
-        public string? Creator { get; set; } 
+        public string? Creator { get; set; }
 
         [JsonProperty("genVoidCB", NullValueHandling = NullValueHandling.Ignore)]
-        public string? Void { get; set; } 
+        public string? Void { get; set; }
 
         [JsonProperty("status", NullValueHandling = NullValueHandling.Ignore)]
         public string? Status { get; set; }
@@ -116,8 +116,8 @@ namespace BusinessProcessLibrary
     }
 
     // Engineer's Supplemental Instructions (ESI) - a workflow BP I will test
-    public class ESI(string? thirdPartyReviewers, string? associatedRFI, string? cppName, string? cppNumber, string? contract,
-        string? contractorReference, string? costImpact, string? creationDate, string? creator, string? creatorCompany,
+    public class EngineersSupplementalInstructions(string? thirdPartyReviewers, string? associatedRFI, string? cppName, string? cppNumber,
+        string? contract, string? contractorReference, string? costImpact, string? creationDate, string? creator, string? creatorCompany,
         string? decision, string? dueDate, string? esiStatus, string? notes, string? prefixPublishPath, string? proposedDecision,
         string? publishPath, string? recordNo, string? scheduleImpact, string? specifications, string? status, string? title)
     {
@@ -189,4 +189,53 @@ namespace BusinessProcessLibrary
     }
 
     // Canvassing Efforts - a non-workflow BP I will test
+    public class CanvassingEfforts(string? endDate, string? recordLastUpdateDate, string? creationDate, string? canvassingProject,
+            string? allEncompassingEffort, string? recordNo, string? @void, string? creator, string? startDate, string? publishPath,
+            string? bpRecordURL, string? name, string? status, string? integrationKey, string? attachmentCountVerification)
+    {
+        [JsonProperty("uxceEndDate", NullValueHandling = NullValueHandling.Ignore)]
+        public string? EndDate { get; set; } = endDate;
+
+        [JsonProperty("uuu_record_last_update_date", NullValueHandling = NullValueHandling.Ignore)]
+        public string? RecordLastUpdateDate { get; set; } = recordLastUpdateDate;
+
+        [JsonProperty("uuu_creation_date", NullValueHandling = NullValueHandling.Ignore)]
+        public string? CreationDate { get; set; } = creationDate;
+
+        [JsonProperty("piCanvassingProjectBP", NullValueHandling = NullValueHandling.Ignore)]
+        public string? CanvassingProject { get; set; } = canvassingProject;
+
+        [JsonProperty("piAllEncompassingYNRB", NullValueHandling = NullValueHandling.Ignore)]
+        public string? AllEncompassingEffort { get; set; } = allEncompassingEffort;
+
+        [JsonProperty("record_no", NullValueHandling = NullValueHandling.Ignore)]
+        public string? RecordNo { get; set; } = recordNo;
+
+        [JsonProperty("genVoidCB", NullValueHandling = NullValueHandling.Ignore)]
+        public string? Void { get; set; } = @void;
+
+        [JsonProperty("creator_id", NullValueHandling = NullValueHandling.Ignore)]
+        public string? Creator { get; set; } = creator;
+
+        [JsonProperty("uxceStartDate", NullValueHandling = NullValueHandling.Ignore)]
+        public string? StartDate { get; set; } = startDate;
+
+        [JsonProperty("uuu_dm_publish_path", NullValueHandling = NullValueHandling.Ignore)]
+        public string? PublishPath { get; set; } = publishPath;
+
+        [JsonProperty("uuu_bp_record_url", NullValueHandling = NullValueHandling.Ignore)]
+        public string? BPRecordURL { get; set; } = bpRecordURL;
+
+        [JsonProperty("uxceEffortName1", NullValueHandling = NullValueHandling.Ignore)]
+        public string? Name { get; set; } = name;
+
+        [JsonProperty("status", NullValueHandling = NullValueHandling.Ignore)]
+        public string? Status { get; set; } = status;
+
+        [JsonProperty("integration_key", NullValueHandling = NullValueHandling.Ignore)]
+        public string? IntegrationKey { get; set; } = integrationKey;
+
+        [JsonProperty("piAttachNumPlusYesNoIA", NullValueHandling = NullValueHandling.Ignore)]
+        public string? AttachmentCountVerification { get; set; } = attachmentCountVerification;
+    }
 }
