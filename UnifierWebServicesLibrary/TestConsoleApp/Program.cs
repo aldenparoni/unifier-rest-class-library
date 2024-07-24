@@ -10,25 +10,11 @@ namespace TestConsoleApp
             bool continueLoop = true;
             int userNav;
 
-            Console.Write("Enter 0 for Production, or 1 for Stage: ");
-            int userEnv = Convert.ToInt32(Console.ReadLine());
-            Console.Write("Enter your username: $$");
-            string? username = "$$" + Console.ReadLine();
-            Console.Write("Enter your password: ");
-            string? password = UnifierRequests.ReadPassword();
-
-            IntegrationUser user = new(userEnv, username, password);
-
-            Console.WriteLine("\nWelcome to Unifier Web Services!");
+            IntegrationUser user = ConsoleAppFunctions.GetToken();
 
             while (continueLoop == true)
             {
-                Console.WriteLine("\nUnifier Web Services Menu:");
-                Console.WriteLine("   1: Get a Business Process record");
-                Console.WriteLine("   2: Create a new Business Process record");
-                Console.WriteLine("   3: Update an existing Business Process record");
-                Console.WriteLine("   4: Exit program");
-                Console.Write("Please enter a number between 1 - 4: ");
+                ConsoleAppFunctions.Menu();
 
                 try
                 {
@@ -60,13 +46,11 @@ namespace TestConsoleApp
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine("\nPlease enter an integer.");
+                    Console.WriteLine($"\n{ex.Message}");
                 }
             }
 
             Console.WriteLine("\nThank you for using this program!");
-
-
         }
     }
 }

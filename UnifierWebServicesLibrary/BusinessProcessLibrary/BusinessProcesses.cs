@@ -189,53 +189,64 @@ namespace BusinessProcessLibrary
     }
 
     // Canvassing Efforts - a non-workflow BP I will test
-    public class CanvassingEfforts(string? endDate, string? recordLastUpdateDate, string? creationDate, string? canvassingProject,
-            string? allEncompassingEffort, string? recordNo, string? @void, string? creator, string? startDate, string? publishPath,
-            string? bpRecordURL, string? name, string? status, string? integrationKey, string? attachmentCountVerification)
+    public class CanvassingEfforts
     {
         [JsonProperty("uxceEndDate", NullValueHandling = NullValueHandling.Ignore)]
-        public string? EndDate { get; set; } = endDate;
+        public string? EndDate { get; set; } = null;
 
         [JsonProperty("uuu_record_last_update_date", NullValueHandling = NullValueHandling.Ignore)]
-        public string? RecordLastUpdateDate { get; set; } = recordLastUpdateDate;
+        public string? RecordLastUpdateDate { get; set; } = null;
 
         [JsonProperty("uuu_creation_date", NullValueHandling = NullValueHandling.Ignore)]
-        public string? CreationDate { get; set; } = creationDate;
+        public string? CreationDate { get; set; } = null;
 
         [JsonProperty("piCanvassingProjectBP", NullValueHandling = NullValueHandling.Ignore)]
-        public string? CanvassingProject { get; set; } = canvassingProject;
+        public string? CanvassingProject { get; set; } = null;
 
         [JsonProperty("piAllEncompassingYNRB", NullValueHandling = NullValueHandling.Ignore)]
-        public string? AllEncompassingEffort { get; set; } = allEncompassingEffort;
+        public string? AllEncompassingEffort { get; set; } = null;
 
         [JsonProperty("record_no", NullValueHandling = NullValueHandling.Ignore)]
-        public string? RecordNo { get; set; } = recordNo;
+        public string? RecordNo { get; set; } = null;
 
         [JsonProperty("genVoidCB", NullValueHandling = NullValueHandling.Ignore)]
-        public string? Void { get; set; } = @void;
+        public string? Void { get; set; } = null;
 
         [JsonProperty("creator_id", NullValueHandling = NullValueHandling.Ignore)]
-        public string? Creator { get; set; } = creator;
+        public string? Creator { get; set; } = null;
 
         [JsonProperty("uxceStartDate", NullValueHandling = NullValueHandling.Ignore)]
-        public string? StartDate { get; set; } = startDate;
+        public string? StartDate { get; set; } = null;
 
         [JsonProperty("uuu_dm_publish_path", NullValueHandling = NullValueHandling.Ignore)]
-        public string? PublishPath { get; set; } = publishPath;
+        public string? PublishPath { get; set; } = null;
 
         [JsonProperty("uuu_bp_record_url", NullValueHandling = NullValueHandling.Ignore)]
-        public string? BPRecordURL { get; set; } = bpRecordURL;
+        public string? BPRecordURL { get; set; } = null;
 
         [JsonProperty("uxceEffortName1", NullValueHandling = NullValueHandling.Ignore)]
-        public string? Name { get; set; } = name;
+        public string? Name { get; set; } = null;
 
         [JsonProperty("status", NullValueHandling = NullValueHandling.Ignore)]
-        public string? Status { get; set; } = status;
+        public string? Status { get; set; } = null;
 
         [JsonProperty("integration_key", NullValueHandling = NullValueHandling.Ignore)]
-        public string? IntegrationKey { get; set; } = integrationKey;
+        public string? IntegrationKey { get; set; } = null;
 
         [JsonProperty("piAttachNumPlusYesNoIA", NullValueHandling = NullValueHandling.Ignore)]
-        public string? AttachmentCountVerification { get; set; } = attachmentCountVerification;
+        public string? AttachmentCountVerification { get; set; } = null;
+
+        // Constructor based on editable fields on creation form
+        public CanvassingEfforts(string? name, string? canvassingProject, string? startDate, 
+            string? endDate, string? allEncompassingEffort, string? status, string? @void)
+        {
+            Name = name;
+            CanvassingProject = canvassingProject;
+            StartDate = startDate;
+            EndDate = endDate;
+            AllEncompassingEffort = allEncompassingEffort;
+            Status = status;
+            Void = @void;
+        }
     }
 }

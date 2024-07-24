@@ -78,7 +78,14 @@ namespace UnifierWebServicesLibrary
             return string.Empty;
         }
 
-        // public static void CreateBPRecord()
+        public static void CreateBPRecord(IntegrationUser user, string jsonBody)
+        {
+            var client = SetClient(user.Environment);
+            var request = new RestRequest("/ws/rest/service/v2/bp/record", Method.Post);
+            request.AddHeader("Authorization", $"Bearer {user.Token}");
+            request.AddJsonBody(jsonBody);
+            var response = ExecuteResponse(client, request);
+        }
 
         /// <summary>
         /// This method prints all the info of a REST request. This is mainly for testing and debugging.
