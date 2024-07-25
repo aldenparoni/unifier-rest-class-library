@@ -7,7 +7,7 @@ namespace ConsoleAppLibrary
     public class ConsoleAppFunctions
     {
         /// <summary>
-        /// This method takes user input to create a new IntegrationUser object, which includes generating a new auth token.
+        /// This method takes user input to create a new IntegrationUser object.
         /// </summary>
         /// <returns>A new IntegrationUser object that will be used throughout app runtime.</returns>
         public static IntegrationUser GetToken()
@@ -23,6 +23,9 @@ namespace ConsoleAppLibrary
             return new IntegrationUser(userEnv, username, password);
         }
 
+        /// <summary>
+        /// This method prints the menu items of the console app program.
+        /// </summary>
         public static void Menu()
         {
             Console.WriteLine("\nUnifier Web Services Menu:");
@@ -34,7 +37,7 @@ namespace ConsoleAppLibrary
         }
 
         /// <summary>
-        /// This method prints the information of a record requested by user parameters.
+        /// This method takes user input and sets up the REST request of getting an existing Business Process record.
         /// </summary>
         /// <param name="user">The IntegrationUser object instance used throughout app runtime.</param>
         public static void GetRecordApp(IntegrationUser user)
@@ -50,10 +53,14 @@ namespace ConsoleAppLibrary
             Console.WriteLine(UnifierRequests.GetBPRecord(user, projectNum, input)); 
         }
 
+        /// <summary>
+        /// This method takes user input and sets up the REST request of creating a new Business Process record.
+        /// </summary>
+        /// <param name="user">The IntegrationUser object instance used throughout app runtime.</param>
         public static void CreateRecordApp(IntegrationUser user)
         {
             // Declare user input variable for this function
-            int? bpChoice = 0;
+            int? bpChoice;
 
             Console.WriteLine("In this console application, we have two business processes you can create records for: ");
             Console.WriteLine("  1. Engineer's Supplemental Instructions (ESI)");
@@ -65,6 +72,43 @@ namespace ConsoleAppLibrary
                 if (bpChoice == 1)
                 {
                     Console.WriteLine($"\nYou have chosen {bpChoice}. Engineer's Supplemental Instructions (ESI)");
+
+                    Console.Write("\nEnter the project number: ");
+                    string? projectNum = Console.ReadLine();
+                    WorkflowDetails workflowDetails = new("Any Name", "System Integration", "Submit");
+                    Options options = new(projectNum, "Engineer's Supplemental Instructions (ESI)", workflowDetails);
+
+                    Console.WriteLine("Please enter record information below:");
+                    Console.Write("\n                                 Title: ");
+                    string? esiTitle = Console.ReadLine();
+                    Console.Write("                 Cost Impact (Yes or No): ");
+                    string? costImpact = Console.ReadLine();
+                    Console.Write("             Schedule Impact (Yes or No): ");
+                    string? scheduleImpact = Console.ReadLine();
+                    Console.Write("      Contract (default: CT-HRT-2000106): ");
+                    string? contractNum = Console.ReadLine();
+                    Console.Write("  Associated RFI (enter a record number): ");
+                    string? associatedRFI = Console.ReadLine();
+                    Console.Write("                     3rd Party Reviewers: ");
+                    string? thirdParty = Console.ReadLine();
+                    Console.Write("                    Contractor Reference: ");
+                    string? contractRef = Console.ReadLine();
+                    Console.Write("                                   Notes: ");
+                    string? notes = Console.ReadLine();
+                    Console.Write("                          Specifications: ");
+                    string? specs = Console.ReadLine();
+
+                    List<EngineersSupplementalInstructions> data = 
+                    [
+                        new EngineersSupplementalInstructions(esiTitle, costImpact, scheduleImpact, contractNum, associatedRFI, 
+                            thirdParty, contractRef, notes, specs)
+                    ];
+
+                    JSONBody<Options, List<EngineersSupplementalInstructions>> jsonBody = new(options, data);
+                    string body = JsonConvert.SerializeObject(jsonBody, Formatting.Indented);
+
+                    Console.WriteLine($"\nThank you. Now creating record in Unifier...\n");
+                    Console.WriteLine(UnifierRequests.CreateBPRecord(user, body));
                 }
                 else if (bpChoice == 2)
                 {
@@ -72,35 +116,34 @@ namespace ConsoleAppLibrary
 
                     Console.Write("\nEnter the project number: ");
                     string? projectNum = Console.ReadLine();
-                    Options options = new Options(projectNum, "Canvassing Efforts");
+                    Options options = new (projectNum, "Canvassing Efforts");
 
                     Console.WriteLine("Please enter record information below.");
                     Console.Write("\n                                        Name: ");
                     string? effortName = Console.ReadLine();
-                    Console.Write("\n  Canvassing Project (enter a record number): ");
+                    Console.Write("  Canvassing Project (enter a record number): ");
                     string? canvasProject = Console.ReadLine();
-                    Console.Write("\n            Start Date (MM-DD-YYYY HH:MM:SS): ");
+                    Console.Write("            Start Date (MM-DD-YYYY HH:MM:SS): ");
                     string? startDate = Console.ReadLine();
-                    Console.Write("\n              End Date (MM-DD-YYYY HH:MM:SS): ");
+                    Console.Write("              End Date (MM-DD-YYYY HH:MM:SS): ");
                     string? endDate = Console.ReadLine();
-                    Console.Write("\n        All-Encompassing Effort? (yes or no): ");
+                    Console.Write("        All-Encompassing Effort? (Yes or No): ");
                     string? allEncompassing = Console.ReadLine();
-                    Console.Write("\n           Status (Active, Inactive, Voided): ");
+                    Console.Write("           Status (Active, Inactive, Voided): ");
                     string? status = Console.ReadLine();
-                    Console.Write("\n                  Void (1 for yes, 0 for no): ");
+                    Console.Write("                  Void (1 for yes, 0 for no): ");
                     string? isVoid = Console.ReadLine();
 
-                    List<CanvassingEfforts> data = new List<CanvassingEfforts>
-                    { 
+                    List<CanvassingEfforts> data =
+                    [
                         new CanvassingEfforts(effortName, canvasProject, startDate, endDate, allEncompassing, status, isVoid)
-                    };
+                    ];
 
                     JSONBody<Options, List<CanvassingEfforts>> jsonBody = new(options, data);
                     string body = JsonConvert.SerializeObject(jsonBody, Formatting.Indented);
 
-                    Console.WriteLine($"\nThank you. Now creating record in Unifier...");
-
-                    UnifierRequests.CreateBPRecord(user, body);
+                    Console.WriteLine($"\nThank you. Now creating record in Unifier...\n");
+                    Console.WriteLine(UnifierRequests.CreateBPRecord(user, body));
                 }
                 else
                 {

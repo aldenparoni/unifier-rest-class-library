@@ -41,6 +41,8 @@ namespace UnifierWebServicesLibrary
                 };
 
             }
+            
+            // Set up the remainder of the request
             var client = new RestClient(options);
             var request = new RestRequest("/ws/rest/service/v1/login", Method.Get);
             var response = client.Execute(request);
@@ -62,6 +64,7 @@ namespace UnifierWebServicesLibrary
         /// <param name="user">The IntegrationUser object containing environment and auth token.</param>
         /// <param name="projectNum">The shell number to navigate to.</param>
         /// <param name="input">The GetRecordInput object to be serialized as a JSON param for the REST call.</param>
+        /// <returns>If the content of the RestResponse is not null, return the contents. Otherwise, return an empty string.</returns>
         public static string GetBPRecord(IntegrationUser user, string projectNum, GetRecordInput input)
         {
             var client = SetClient(user.Environment);
@@ -78,13 +81,46 @@ namespace UnifierWebServicesLibrary
             return string.Empty;
         }
 
-        public static void CreateBPRecord(IntegrationUser user, string jsonBody)
+        /// <summary>
+        /// This method performs the REST call to create a Business Process record.
+        /// </summary>
+        /// <param name="user">The IntegrationUser object containing environment and auth token.</param>
+        /// <param name="jsonBody">The JSON-formatted string of the request body</param>
+        /// <returns>If the content of the RestResponse is not null, return the contents. Otherwise, return an empty string.</returns>
+        public static string CreateBPRecord(IntegrationUser user, string jsonBody)
         {
             var client = SetClient(user.Environment);
             var request = new RestRequest("/ws/rest/service/v2/bp/record", Method.Post);
             request.AddHeader("Authorization", $"Bearer {user.Token}");
             request.AddJsonBody(jsonBody);
-            var response = ExecuteResponse(client, request);
+            var response = client.Execute(request);
+            if (response.Content != null)
+            {
+                Console.WriteLine("Displaying the resulting json...\n");
+                return response.Content;
+            }
+            return string.Empty;
+        }
+
+        /// <summary>
+        /// This method performs the REST call to update an existing Business Process record.
+        /// </summary>
+        /// <param name="user">The IntegrationUser object containing environment and auth token.</param>
+        /// <param name="jsonBody">The JSON-formatted string of the request body</param>
+        /// <returns>If the content of the RestResponse is not null, return the contents. Otherwise, return an empty string.</returns>
+        public static string UpdateBPRecord(IntegrationUser user, string jsonBody)
+        {
+            var client = SetClient(user.Environment);
+            var request = new RestRequest("/ws/rest/service/v2/bp/record", Method.Put);
+            request.AddHeader("Authorization", $"Bearer {user.Token}");
+            request.AddJsonBody(jsonBody);
+            var response = client.Execute(request);
+            if (response.Content != null)
+            {
+                Console.WriteLine("Displaying the resulting json...\n");
+                return response.Content;
+            }
+            return string.Empty;
         }
 
         /// <summary>
@@ -93,7 +129,7 @@ namespace UnifierWebServicesLibrary
         /// <param name="client">The RestClient for the request being performed.</param>
         /// <param name="request">The RestRequest for the request being performed.</param>
         /// <returns>The generated RestResponse for debugging.</returns>
-        public static RestResponse ExecuteResponse(RestClient client, RestRequest request)
+        public static RestResponse ExecuteDebug(RestClient client, RestRequest request)
         {
             var response = client.Execute(request);
 

@@ -7,46 +7,50 @@ namespace TestConsoleApp
     {
         static void Main() 
         {
+            // Initialize program variables and objects
             bool continueLoop = true;
             int userNav;
-
             IntegrationUser user = ConsoleAppFunctions.GetToken();
 
-            while (continueLoop == true)
+            if (user.Token != string.Empty)
             {
-                ConsoleAppFunctions.Menu();
-
-                try
+                while (continueLoop == true)
                 {
-                    userNav = Convert.ToInt32(Console.ReadLine());
+                    // Print menu
+                    ConsoleAppFunctions.Menu();
 
-                    if (userNav == 1)
+                    try
                     {
-                        Console.WriteLine("\nYou have selected 1: Get a Business Process record");
-                        ConsoleAppFunctions.GetRecordApp(user);
+                        userNav = Convert.ToInt32(Console.ReadLine());
+
+                        if (userNav == 1)
+                        {
+                            Console.WriteLine("\nYou have selected 1: Get a Business Process record");
+                            ConsoleAppFunctions.GetRecordApp(user);
+                        }
+                        else if (userNav == 2)
+                        {
+                            Console.WriteLine("\nYou have selected 2: Create a new Business Process record");
+                            ConsoleAppFunctions.CreateRecordApp(user);
+                        }
+                        else if (userNav == 3)
+                        {
+                            Console.WriteLine("\nYou have selected 3: Update an existing Business Process record");
+                        }
+                        else if (userNav == 4)
+                        {
+                            Console.WriteLine("\nYou have selected 4: Exit program");
+                            continueLoop = false;
+                        }
+                        else
+                        {
+                            Console.WriteLine($"\n{userNav} is not within range. Please enter a number within the range.");
+                        }
                     }
-                    else if (userNav == 2)
+                    catch (Exception ex)
                     {
-                        Console.WriteLine("\nYou have selected 2: Create a new Business Process record");
-                        ConsoleAppFunctions.CreateRecordApp(user);
+                        Console.WriteLine($"\n{ex.Message}");
                     }
-                    else if (userNav == 3)
-                    {
-                        Console.WriteLine("\nYou have selected 3: Update an existing Business Process record");
-                    }
-                    else if (userNav == 4)
-                    {
-                        Console.WriteLine("\nYou have selected 4: Exit program");
-                        continueLoop = false;
-                    }
-                    else
-                    {
-                        Console.WriteLine($"\n{userNav} is not within range. Please enter a number within the range.");
-                    }
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine($"\n{ex.Message}");
                 }
             }
 
