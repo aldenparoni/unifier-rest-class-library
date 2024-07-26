@@ -36,6 +36,7 @@ namespace TestConsoleApp
                         else if (userNav == 3)
                         {
                             Console.WriteLine("\nYou have selected 3: Update an existing Business Process record");
+                            ConsoleAppFunctions.UpdateRecordApp(user);
                         }
                         else if (userNav == 4)
                         {

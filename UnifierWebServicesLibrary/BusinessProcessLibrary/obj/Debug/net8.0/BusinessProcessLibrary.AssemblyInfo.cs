@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("BusinessProcessLibrary")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3fdcc576d1f1015f3ef707f3349b3bd4170a3bfa")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d20ad944f073ca2b797d2e10d9d62c0b75a1ea8b")]
 [assembly: System.Reflection.AssemblyProductAttribute("BusinessProcessLibrary")]
 [assembly: System.Reflection.AssemblyTitleAttribute("BusinessProcessLibrary")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -49,8 +49,9 @@ namespace ConsoleAppLibrary
             Console.Write("Enter the record number: ");
             string? recordNum = Console.ReadLine(); 
             GetRecordInput input = new(bpName, recordNum);
+            string inputJSON = JsonConvert.SerializeObject(input);
             Console.WriteLine($"\nGetting record number {recordNum} of {bpName} in {projectNum}...\n");
-            Console.WriteLine(UnifierRequests.GetBPRecord(user, projectNum, input)); 
+            Console.WriteLine(UnifierRequests.GetBPRecord(user, projectNum, inputJSON)); 
         }
 
         /// <summary>
@@ -62,10 +63,11 @@ namespace ConsoleAppLibrary
             // Declare user input variable for this function
             int? bpChoice;
 
-            Console.WriteLine("In this console application, we have two business processes you can create records for: ");
+            Console.WriteLine("\nIn this console application, we have two business processes you can create records for: ");
             Console.WriteLine("  1. Engineer's Supplemental Instructions (ESI)");
             Console.WriteLine("  2. Canvassing Efforts");
             Console.Write("\nPlease enter 1 or 2 to pick from the above business processes: ");
+
             try
             {
                 bpChoice = Convert.ToInt32(Console.ReadLine());
@@ -156,6 +158,62 @@ namespace ConsoleAppLibrary
                 Console.WriteLine("Redirecting back to main menu...");
                 return;
             }
+        }
+
+        public static void UpdateRecordApp(IntegrationUser user)
+        {
+            // Declare user input variable for this function
+            int? bpChoice;
+
+            Console.WriteLine("\nThe steps this program will take to update a record: ");
+            Console.WriteLine("  1. Get a BP record");
+            Console.WriteLine("  2. Update any fields");
+            Console.WriteLine("  3. Send update request");
+            Console.WriteLine("  4. Receive results");
+
+            Console.WriteLine("\nIn this console application, we have two business processes you can update records for: ");
+            Console.WriteLine("  1. Engineer's Supplemental Instructions (ESI)");
+            Console.WriteLine("  2. Canvassing Efforts");
+            Console.Write("\nPlease enter 1 or 2 to pick from the above business processes: ");
+
+            try
+            {
+                bpChoice = Convert.ToInt32(Console.ReadLine());
+                if (bpChoice == 1)
+                {
+                    Console.WriteLine($"\nYou have chosen {bpChoice}. Engineer's Supplemental Instructions (ESI)");
+
+                }
+                else if (bpChoice == 2)
+                {
+                    Console.WriteLine($"\nYou have chosen {bpChoice}. Canvassing Efforts");
+                }
+                else
+                {
+                    Console.WriteLine($"\nYou entered {bpChoice}, which is not in range. Please enter a number in range.");
+                }
+            }
+            catch (Exception ex) 
+            {
+                Console.WriteLine($"\n{ex.Message}");
+                Console.WriteLine("Redirecting back to main menu...");
+                return;
+            }
+        }
+
+        public static string GetRecordToUpdateApp(IntegrationUser user, string bpName)
+        {
+            Console.Write("\nEnter the project number: ");
+            string? projectNum = Console.ReadLine();
+            Console.Write("Enter the record number: ");
+            string? recordNum = Console.ReadLine();
+            GetRecordInput input = new(bpName, recordNum);
+            string inputJSON = JsonConvert.SerializeObject(input);
+            Console.WriteLine($"\nGetting record number {recordNum} of {bpName} in {projectNum}...\n");
+            string record = UnifierRequests.GetBPRecord(user, projectNum, inputJSON);
+
+
+            return string.Empty;
         }
     }
 }
