@@ -27,7 +27,11 @@
         "frameworks": {
           "net8.0": {
             "targetAlias": "net8.0",
-            "projectReferences": {}
+            "projectReferences": {
+              "C:\\Users\\alden.paroni\\Documents\\web-services-git\\c\\UnifierWebServicesLibrary\\UnifierWebServicesLibrary\\UnifierWebServicesLibrary.csproj": {
+                "projectPath": "C:\\Users\\alden.paroni\\Documents\\web-services-git\\c\\UnifierWebServicesLibrary\\UnifierWebServicesLibrary\\UnifierWebServicesLibrary.csproj"
+              }
+            }
           }
         },
         "warningProperties": {

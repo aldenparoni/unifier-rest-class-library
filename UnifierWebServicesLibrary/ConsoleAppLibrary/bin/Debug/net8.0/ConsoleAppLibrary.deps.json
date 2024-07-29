@@ -33,7 +33,8 @@
       },
       "BusinessProcessLibrary/1.0.0": {
         "dependencies": {
-          "Newtonsoft.Json": "13.0.3"
+          "Newtonsoft.Json": "13.0.3",
+          "UnifierWebServicesLibrary": "1.0.0"
         },
         "runtime": {
           "BusinessProcessLibrary.dll": {}

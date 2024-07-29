@@ -74,78 +74,12 @@ namespace ConsoleAppLibrary
                 if (bpChoice == 1)
                 {
                     Console.WriteLine($"\nYou have chosen {bpChoice}. Engineer's Supplemental Instructions (ESI)");
-
-                    Console.Write("\nEnter the project number: ");
-                    string? projectNum = Console.ReadLine();
-                    WorkflowDetails workflowDetails = new("Any Name", "System Integration", "Submit");
-                    Options options = new(projectNum, "Engineer's Supplemental Instructions (ESI)", workflowDetails);
-
-                    Console.WriteLine("Please enter record information below:");
-                    Console.Write("\n                                 Title: ");
-                    string? esiTitle = Console.ReadLine();
-                    Console.Write("                 Cost Impact (Yes or No): ");
-                    string? costImpact = Console.ReadLine();
-                    Console.Write("             Schedule Impact (Yes or No): ");
-                    string? scheduleImpact = Console.ReadLine();
-                    Console.Write("      Contract (default: CT-HRT-2000106): ");
-                    string? contractNum = Console.ReadLine();
-                    Console.Write("  Associated RFI (enter a record number): ");
-                    string? associatedRFI = Console.ReadLine();
-                    Console.Write("                     3rd Party Reviewers: ");
-                    string? thirdParty = Console.ReadLine();
-                    Console.Write("                    Contractor Reference: ");
-                    string? contractRef = Console.ReadLine();
-                    Console.Write("                                   Notes: ");
-                    string? notes = Console.ReadLine();
-                    Console.Write("                          Specifications: ");
-                    string? specs = Console.ReadLine();
-
-                    List<EngineersSupplementalInstructions> data = 
-                    [
-                        new EngineersSupplementalInstructions(esiTitle, costImpact, scheduleImpact, contractNum, associatedRFI, 
-                            thirdParty, contractRef, notes, specs)
-                    ];
-
-                    JSONBody<Options, List<EngineersSupplementalInstructions>> jsonBody = new(options, data);
-                    string body = JsonConvert.SerializeObject(jsonBody, Formatting.Indented);
-
-                    Console.WriteLine($"\nThank you. Now creating record in Unifier...\n");
-                    Console.WriteLine(UnifierRequests.CreateBPRecord(user, body));
+                    EngineersSupplementalInstructions.CreateESI(user);
                 }
                 else if (bpChoice == 2)
                 {
                     Console.WriteLine($"\nYou have chosen {bpChoice}. Canvassing Efforts");
-
-                    Console.Write("\nEnter the project number: ");
-                    string? projectNum = Console.ReadLine();
-                    Options options = new (projectNum, "Canvassing Efforts");
-
-                    Console.WriteLine("Please enter record information below.");
-                    Console.Write("\n                                        Name: ");
-                    string? effortName = Console.ReadLine();
-                    Console.Write("  Canvassing Project (enter a record number): ");
-                    string? canvasProject = Console.ReadLine();
-                    Console.Write("            Start Date (MM-DD-YYYY HH:MM:SS): ");
-                    string? startDate = Console.ReadLine();
-                    Console.Write("              End Date (MM-DD-YYYY HH:MM:SS): ");
-                    string? endDate = Console.ReadLine();
-                    Console.Write("        All-Encompassing Effort? (Yes or No): ");
-                    string? allEncompassing = Console.ReadLine();
-                    Console.Write("           Status (Active, Inactive, Voided): ");
-                    string? status = Console.ReadLine();
-                    Console.Write("                  Void (1 for yes, 0 for no): ");
-                    string? isVoid = Console.ReadLine();
-
-                    List<CanvassingEfforts> data =
-                    [
-                        new CanvassingEfforts(effortName, canvasProject, startDate, endDate, allEncompassing, status, isVoid)
-                    ];
-
-                    JSONBody<Options, List<CanvassingEfforts>> jsonBody = new(options, data);
-                    string body = JsonConvert.SerializeObject(jsonBody, Formatting.Indented);
-
-                    Console.WriteLine($"\nThank you. Now creating record in Unifier...\n");
-                    Console.WriteLine(UnifierRequests.CreateBPRecord(user, body));
+                    CanvassingEfforts.CreateEffort(user);
                 }
                 else
                 {
@@ -211,7 +145,6 @@ namespace ConsoleAppLibrary
             string inputJSON = JsonConvert.SerializeObject(input);
             Console.WriteLine($"\nGetting record number {recordNum} of {bpName} in {projectNum}...\n");
             string record = UnifierRequests.GetBPRecord(user, projectNum, inputJSON);
-
 
             return string.Empty;
         }

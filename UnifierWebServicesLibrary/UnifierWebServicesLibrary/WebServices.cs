@@ -50,8 +50,12 @@ namespace UnifierWebServicesLibrary
             if (response.Content != null)
             {
                 TokenJSON? tokenJSON = JsonConvert.DeserializeObject<TokenJSON>(response.Content);
-                Console.WriteLine("\nAuth token successfully generated.");
-                return tokenJSON.Token;
+                
+                if (tokenJSON != null)
+                {
+                    Console.WriteLine("\nAuth token successfully generated.");
+                    return tokenJSON.Token;
+                }
             }
 
             Console.WriteLine("\nAuth token generation failed.");
