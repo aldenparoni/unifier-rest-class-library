@@ -13,6 +13,8 @@ namespace ConsoleAppLibrary
         public static IntegrationUser GetToken()
         {
             Console.WriteLine("Welcome to Unifier Web Services!");
+
+            // Gather user input
             Console.Write("\nEnter 0 for Production, or 1 for Stage: ");
             int userEnv = Convert.ToInt32(Console.ReadLine());
             Console.Write("Enter your username: $$");
@@ -20,6 +22,7 @@ namespace ConsoleAppLibrary
             Console.Write("Enter your password: ");
             string? password = UnifierRequests.ReadPassword();
 
+            // Create new IntegrationUser instance
             return new IntegrationUser(userEnv, username, password);
         }
 
@@ -42,20 +45,25 @@ namespace ConsoleAppLibrary
         /// <param name="user">The IntegrationUser object instance used throughout app runtime.</param>
         public static void GetRecordApp(IntegrationUser user)
         {
+            // Gather user input
             Console.Write("\nEnter the project number: ");
             string? projectNum = Console.ReadLine();
             Console.Write("Enter the name of the business process (type carefully): ");
             string? bpName = Console.ReadLine();
             Console.Write("Enter the record number: ");
             string? recordNum = Console.ReadLine(); 
+
+            // Create serialized JSON input parameter
             GetRecordInput input = new(bpName, recordNum);
             string inputJSON = JsonConvert.SerializeObject(input);
+
+            // Execute the REST request
             Console.WriteLine($"\nGetting record number {recordNum} of {bpName} in {projectNum}...\n");
             Console.WriteLine(UnifierRequests.GetBPRecord(user, projectNum, inputJSON)); 
         }
 
         /// <summary>
-        /// This method takes user input and sets up the REST request of creating a new Business Process record.
+        /// This method serves as the menu of the create BP record option.
         /// </summary>
         /// <param name="user">The IntegrationUser object instance used throughout app runtime.</param>
         public static void CreateRecordApp(IntegrationUser user)
@@ -63,6 +71,7 @@ namespace ConsoleAppLibrary
             // Declare user input variable for this function
             int? bpChoice;
 
+            // Create BP Record menu
             Console.WriteLine("\nIn this console application, we have two business processes you can create records for: ");
             Console.WriteLine("  1. Engineer's Supplemental Instructions (ESI)");
             Console.WriteLine("  2. Canvassing Efforts");
@@ -70,7 +79,9 @@ namespace ConsoleAppLibrary
 
             try
             {
+                // Get user input for menu navigation
                 bpChoice = Convert.ToInt32(Console.ReadLine());
+
                 if (bpChoice == 1)
                 {
                     Console.WriteLine($"\nYou have chosen {bpChoice}. Engineer's Supplemental Instructions (ESI)");
@@ -83,6 +94,7 @@ namespace ConsoleAppLibrary
                 }
                 else
                 {
+                    // Returns to main menu
                     Console.WriteLine($"\nYou entered {bpChoice}, which is not in range. Please enter a number in range.");
                 }
             }
@@ -94,6 +106,10 @@ namespace ConsoleAppLibrary
             }
         }
 
+        /// <summary>
+        /// This method serves as the menu of the update BP record option.
+        /// </summary>
+        /// <param name="user"></param>
         public static void UpdateRecordApp(IntegrationUser user)
         {
             // Declare user input variable for this function

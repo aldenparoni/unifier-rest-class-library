@@ -1,5 +1,4 @@
 ﻿using Newtonsoft.Json;
-using System.Numerics;
 using UnifierWebServicesLibrary;
 
 namespace BusinessProcessLibrary
@@ -74,6 +73,10 @@ namespace BusinessProcessLibrary
         [JsonProperty("title", NullValueHandling = NullValueHandling.Ignore)]
         public string? Title { get; set; } = title;
 
+        /// <summary>
+        /// This method takes user input and sets up the REST request to create a new ESI record.
+        /// </summary>
+        /// <param name="user">The IntegrationUser object instance used throughout app runtime.</param>
         public static void CreateESI(IntegrationUser user)
         {
             Console.Write("\nEnter the project number: ");
@@ -164,6 +167,10 @@ namespace BusinessProcessLibrary
         [JsonProperty("piAttachNumPlusYesNoIA", NullValueHandling = NullValueHandling.Ignore)]
         public string? AttachmentCountVerification { get; set; } = null;
 
+        /// <summary>
+        /// This method takes user input and sets up the REST request to create a new Canvassing Efforts record.
+        /// </summary>
+        /// <param name="user">The IntegrationUser object instance used throughout app runtime.</param>
         public static void CreateEffort (IntegrationUser user)
         {
             Console.Write("\nEnter the project number: ");
