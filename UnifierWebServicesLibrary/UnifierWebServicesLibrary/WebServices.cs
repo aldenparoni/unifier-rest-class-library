@@ -76,12 +76,7 @@ namespace UnifierWebServicesLibrary
             request.AddHeader("Authorization", $"Bearer {user.Token}");
             request.AddParameter("input", input);
             var response = client.Execute(request);
-            if (response.Content != null)
-            {
-                Console.WriteLine("Displaying the resulting json...\n");
-                return response.Content;
-            }
-            return string.Empty;
+            return response.Content ?? string.Empty;
         }
 
         /// <summary>
@@ -97,12 +92,7 @@ namespace UnifierWebServicesLibrary
             request.AddHeader("Authorization", $"Bearer {user.Token}");
             request.AddJsonBody(jsonBody);
             var response = client.Execute(request);
-            if (response.Content != null)
-            {
-                Console.WriteLine("Displaying the resulting json...\n");
-                return response.Content;
-            }
-            return string.Empty;
+            return response.Content ?? string.Empty;
         }
 
         /// <summary>
@@ -118,12 +108,7 @@ namespace UnifierWebServicesLibrary
             request.AddHeader("Authorization", $"Bearer {user.Token}");
             request.AddJsonBody(jsonBody);
             var response = client.Execute(request);
-            if (response.Content != null)
-            {
-                Console.WriteLine("Displaying the resulting json...\n");
-                return response.Content;
-            }
-            return string.Empty;
+            return response.Content ?? string.Empty;
         }
 
         /// <summary>

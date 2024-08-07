@@ -4,14 +4,13 @@ using UnifierWebServicesLibrary;
 namespace BusinessProcessLibrary
 {
     // Engineer's Supplemental Instructions (ESI) - a workflow BP I will test
-    public class EngineersSupplementalInstructions(string? title, string? costImpact, string? scheduleImpact, string? contract,
-        string? associatedRFI, string? thirdParty, string? contractorRef, string? notes, string? specs)
+    public class EngineersSupplementalInstructions
     {
         [JsonProperty("rfi3rdPartyMS", NullValueHandling = NullValueHandling.Ignore)]
-        public string? ThirdPartyReviewers { get; set; } = thirdParty;
+        public string? ThirdPartyReviewers { get; set; } = null;
 
         [JsonProperty("rfiAssociatedRFIBP", NullValueHandling = NullValueHandling.Ignore)]
-        public string? AssociatedRFI { get; set; } = associatedRFI;
+        public string? AssociatedRFI { get; set; } = null;
 
         [JsonProperty("cppnamesysshellname", NullValueHandling = NullValueHandling.Ignore)]
         public string? CPPName { get; set; } = null;
@@ -20,13 +19,13 @@ namespace BusinessProcessLibrary
         public string? CPPNumber { get; set; } = null;
 
         [JsonProperty("uasiContractReferenceDP", NullValueHandling = NullValueHandling.Ignore)]
-        public string? Contract { get; set; } = contract;
+        public string? Contract { get; set; } = null;
 
         [JsonProperty("corCtrRefTB250", NullValueHandling = NullValueHandling.Ignore)]
-        public string? ContractorReference { get; set; } = contractorRef;
+        public string? ContractorReference { get; set; } = null;
 
         [JsonProperty("urfiCostImpactPD", NullValueHandling = NullValueHandling.Ignore)]
-        public string? CostImpact { get; set; } = costImpact;
+        public string? CostImpact { get; set; } = null;
 
         [JsonProperty("uuu_creation_date", NullValueHandling = NullValueHandling.Ignore)]
         public string? CreationDate { get; set; } = null;
@@ -47,7 +46,7 @@ namespace BusinessProcessLibrary
         public string? ESIStatus { get; set; } = null;
 
         [JsonProperty("Notes", NullValueHandling = NullValueHandling.Ignore)]
-        public string? Notes { get; set; } = notes;
+        public string? Notes { get; set; } = null;
 
         [JsonProperty("genPrePublishPathTB250", NullValueHandling = NullValueHandling.Ignore)]
         public string? PrefixPublishPath { get; set; } = null;
@@ -62,16 +61,36 @@ namespace BusinessProcessLibrary
         public string? RecordNo { get; set; } = null;
 
         [JsonProperty("urfiScheduleImpactPD", NullValueHandling = NullValueHandling.Ignore)]
-        public string? ScheduleImpact { get; set; } = scheduleImpact;
+        public string? ScheduleImpact { get; set; } = null;
 
         [JsonProperty("ugenSpecifcatnsMTL4000", NullValueHandling = NullValueHandling.Ignore)]
-        public string? Specifications { get; set; } = specs;
+        public string? Specifications { get; set; } = null;
 
         [JsonProperty("status", NullValueHandling = NullValueHandling.Ignore)]
         public string? Status { get; set; } = null;
 
         [JsonProperty("title", NullValueHandling = NullValueHandling.Ignore)]
-        public string? Title { get; set; } = title;
+        public string? Title { get; set; } = null;
+
+        // Constructor for creating new ESI record
+        public EngineersSupplementalInstructions(string? title, string? costImpact, string? scheduleImpact, string? contract,
+            string? associatedRFI, string? thirdParty, string? contractorRef, string? notes, string? specs)
+        {
+            Title = title;
+            CostImpact = costImpact;
+            ScheduleImpact = scheduleImpact;
+            Contract = contract;
+            AssociatedRFI = associatedRFI;
+            ThirdPartyReviewers = thirdParty;
+            ContractorReference = contractorRef;
+            Notes = notes;
+            Specifications = specs;
+        }
+
+        // Constructor for deserializing JSON-formatted string into ESI object
+        public EngineersSupplementalInstructions()
+        {
+        }
 
         /// <summary>
         /// This method takes user input and sets up the REST request to create a new ESI record.

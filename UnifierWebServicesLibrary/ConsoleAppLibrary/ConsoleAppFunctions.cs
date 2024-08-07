@@ -132,7 +132,7 @@ namespace ConsoleAppLibrary
                 if (bpChoice == 1)
                 {
                     Console.WriteLine($"\nYou have chosen {bpChoice}. Engineer's Supplemental Instructions (ESI)");
-
+                    GetRecordToUpdateApp(user, "Engineer's Supplemental Instructions (ESI)");
                 }
                 else if (bpChoice == 2)
                 {
@@ -161,8 +161,8 @@ namespace ConsoleAppLibrary
             string inputJSON = JsonConvert.SerializeObject(input);
             Console.WriteLine($"\nGetting record number {recordNum} of {bpName} in {projectNum}...\n");
             string record = UnifierRequests.GetBPRecord(user, projectNum, inputJSON);
-
-            return string.Empty;
+            
+            return record ?? string.Empty;
         }
     }
 }
