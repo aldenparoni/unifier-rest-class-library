@@ -3,7 +3,7 @@ using RestSharp.Authenticators;
 using Newtonsoft.Json;
 
 namespace UnifierWebServicesLibrary
-{
+{ 
     public class IntegrationUser(int environment, string username, string password)
     {
         public int? Environment { get; set; } = environment;
@@ -338,5 +338,17 @@ namespace UnifierWebServicesLibrary
 
         [JsonProperty("data")]
         public T2? Data { get; set; } = data;
+    }
+
+    public class ReturnJSON<T1, T2, T3> (T1? data, T2? message, T3? status)
+    {
+        [JsonProperty("data")]
+        public T1? Data { get; set; } = data;
+
+        [JsonProperty("message")]
+        public T2? Message { get; set; } = message;
+
+        [JsonProperty("status")]
+        public T3? Status { get; set; } = status;
     }
 }
