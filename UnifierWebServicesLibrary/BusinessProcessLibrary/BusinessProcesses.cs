@@ -87,9 +87,34 @@ namespace BusinessProcessLibrary
             Specifications = specs;
         }
 
-        // Constructor for deserializing JSON-formatted string into ESI object
-        public EngineersSupplementalInstructions()
+        // Constructor for deserializing JSON-formatted string
+        public EngineersSupplementalInstructions(string? thirdParty, string? associatedRFI, string? cppName, string? cppNum, string? contract,
+            string? contractorRef, string? costImpact, string? creationDate, string? creator, string? creatorCompany, string? decision,
+            string? dueDate, string? esiStatus, string? notes, string? prefixPublishPath, string? proposedDecision, string? publishPath,
+            string? recordNo, string? scheduleImpact, string? specs, string? status, string? title)
         {
+            ThirdPartyReviewers = thirdParty;
+            AssociatedRFI = associatedRFI;
+            CPPName = cppName;
+            CPPNumber = cppNum;
+            Contract = contract;
+            ContractorReference = contractorRef;
+            CostImpact = costImpact;
+            CreationDate = creationDate;
+            Creator = creator;
+            CreatorCompany = creatorCompany;
+            Decision = decision;
+            DueDate = dueDate;
+            ESIStatus = esiStatus;
+            Notes = notes;
+            PrefixPublishPath = prefixPublishPath;
+            ProposedDecision = proposedDecision;
+            PublishPath = publishPath;
+            RecordNo = recordNo;
+            ScheduleImpact = scheduleImpact;
+            Specifications = specs;
+            Status = status;
+            Title = title;
         }
 
         /// <summary>
@@ -138,11 +163,10 @@ namespace BusinessProcessLibrary
     }
 
     // Canvassing Efforts - a non-workflow BP I will test
-    public class CanvassingEfforts(string? name, string? canvassingProject, string? startDate,
-        string? endDate, string? allEncompassingEffort, string? status, string? @void)
+    public class CanvassingEfforts
     {
         [JsonProperty("uxceEndDate", NullValueHandling = NullValueHandling.Ignore)]
-        public string? EndDate { get; set; } = endDate;
+        public string? EndDate { get; set; } = null;
 
         [JsonProperty("uuu_record_last_update_date", NullValueHandling = NullValueHandling.Ignore)]
         public string? RecordLastUpdateDate { get; set; } = null;
@@ -151,22 +175,22 @@ namespace BusinessProcessLibrary
         public string? CreationDate { get; set; } = null;
 
         [JsonProperty("piCanvassingProjectBP", NullValueHandling = NullValueHandling.Ignore)]
-        public string? CanvassingProject { get; set; } = canvassingProject;
+        public string? CanvassingProject { get; set; } = null;
 
         [JsonProperty("piAllEncompassingYNRB", NullValueHandling = NullValueHandling.Ignore)]
-        public string? AllEncompassingEffort { get; set; } = allEncompassingEffort;
+        public string? AllEncompassingEffort { get; set; } = null;
 
         [JsonProperty("record_no", NullValueHandling = NullValueHandling.Ignore)]
         public string? RecordNo { get; set; } = null;
 
         [JsonProperty("genVoidCB", NullValueHandling = NullValueHandling.Ignore)]
-        public string? Void { get; set; } = @void;
+        public string? Void { get; set; } = null;
 
         [JsonProperty("creator_id", NullValueHandling = NullValueHandling.Ignore)]
         public string? Creator { get; set; } = null;
 
         [JsonProperty("uxceStartDate", NullValueHandling = NullValueHandling.Ignore)]
-        public string? StartDate { get; set; } = startDate;
+        public string? StartDate { get; set; } = null;
 
         [JsonProperty("uuu_dm_publish_path", NullValueHandling = NullValueHandling.Ignore)]
         public string? PublishPath { get; set; } = null;
@@ -175,16 +199,51 @@ namespace BusinessProcessLibrary
         public string? BPRecordURL { get; set; } = null;
 
         [JsonProperty("uxceEffortName1", NullValueHandling = NullValueHandling.Ignore)]
-        public string? Name { get; set; } = name;
+        public string? Name { get; set; } = null;
 
         [JsonProperty("status", NullValueHandling = NullValueHandling.Ignore)]
-        public string? Status { get; set; } = status;
+        public string? Status { get; set; } = null;
 
         [JsonProperty("integration_key", NullValueHandling = NullValueHandling.Ignore)]
         public string? IntegrationKey { get; set; } = null;
 
         [JsonProperty("piAttachNumPlusYesNoIA", NullValueHandling = NullValueHandling.Ignore)]
         public string? AttachmentCountVerification { get; set; } = null;
+
+        // Constructor for creating new Canvassing Effort record
+        public CanvassingEfforts(string? name, string? canvassingProject, string? startDate, string? endDate, 
+            string? allEncompassing, string? status, string? @void)
+        {
+            Name = name;
+            CanvassingProject = canvassingProject;
+            StartDate = startDate;
+            EndDate = endDate;
+            AllEncompassingEffort = allEncompassing;
+            Status = status;
+            Void = @void;
+        }
+
+        // Constructor for deserializing JSON-formatted string
+        public CanvassingEfforts(string? endDate, string? recordLastUpdate, string? creationDate, string? canvassingProject, 
+            string? allEncompassing, string? recordNo, string? @void, string? creator, string? startDate, string? publishPath,
+            string? bpRecordURL, string? name, string? status, string? integrationKey, string? attachCount)
+        {
+            EndDate = endDate;
+            RecordLastUpdateDate = recordLastUpdate;
+            CreationDate = creationDate;
+            CanvassingProject = canvassingProject;
+            AllEncompassingEffort = allEncompassing;
+            RecordNo = recordNo;
+            Void = @void;
+            Creator = creator;
+            StartDate = startDate;
+            PublishPath = publishPath;
+            BPRecordURL = bpRecordURL;
+            Name = name;
+            Status = status;
+            IntegrationKey = integrationKey;
+            AttachmentCountVerification = attachCount;
+        }
 
         /// <summary>
         /// This method takes user input and sets up the REST request to create a new Canvassing Efforts record.

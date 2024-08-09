@@ -132,11 +132,24 @@ namespace ConsoleAppLibrary
                 if (bpChoice == 1)
                 {
                     Console.WriteLine($"\nYou have chosen {bpChoice}. Engineer's Supplemental Instructions (ESI)");
-                    GetRecordToUpdateApp(user, "Engineer's Supplemental Instructions (ESI)");
+                    string record = GetRecordToUpdateApp(user, "Engineer's Supplemental Instructions (ESI)");
+                    if (record == string.Empty)
+                    {
+                        Console.WriteLine("\nSorry, the record was not found. Returning to main menu...");
+                        return;
+                    }
+                    Console.WriteLine("\nRecord found!");
                 }
                 else if (bpChoice == 2)
                 {
                     Console.WriteLine($"\nYou have chosen {bpChoice}. Canvassing Efforts");
+                    string record = GetRecordToUpdateApp(user, "Canvassing Efforts");
+                    if (record == string.Empty)
+                    {
+                        Console.WriteLine("\nSorry, the record was not found. Returning to main menu...");
+                        return;
+                    }
+                    Console.WriteLine("\nRecord found!");
                 }
                 else
                 {
@@ -151,15 +164,22 @@ namespace ConsoleAppLibrary
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="user"></param>
+        /// <param name="bpName"></param>
+        /// <returns></returns>
         public static string GetRecordToUpdateApp(IntegrationUser user, string bpName)
         {
+            Console.WriteLine("\nWe will get the record you want to update.");
             Console.Write("\nEnter the project number: ");
             string? projectNum = Console.ReadLine();
             Console.Write("Enter the record number: ");
             string? recordNum = Console.ReadLine();
             GetRecordInput input = new(bpName, recordNum);
             string inputJSON = JsonConvert.SerializeObject(input);
-            Console.WriteLine($"\nGetting record number {recordNum} of {bpName} in {projectNum}...\n");
+            Console.WriteLine($"\nGetting record number {recordNum} of {bpName} in {projectNum}...");
             string record = UnifierRequests.GetBPRecord(user, projectNum, inputJSON);
             
             return record ?? string.Empty;
