@@ -1,5 +1,6 @@
 ﻿using BusinessProcessLibrary;
 using Newtonsoft.Json;
+using System.Net.Http.Headers;
 using UnifierWebServicesLibrary;
 
 namespace ConsoleAppLibrary
@@ -139,6 +140,9 @@ namespace ConsoleAppLibrary
                         return;
                     }
                     Console.WriteLine("\nRecord found!");
+                    ReturnJSON<List<EngineersSupplementalInstructions>, List<string>, int> returnJSON =
+                        JsonConvert.DeserializeObject<ReturnJSON<List<EngineersSupplementalInstructions>, List<string>, int>>(record);
+                    Console.WriteLine(returnJSON.Data[0]);
                 }
                 else if (bpChoice == 2)
                 {
@@ -150,6 +154,9 @@ namespace ConsoleAppLibrary
                         return;
                     }
                     Console.WriteLine("\nRecord found!");
+                    ReturnJSON<List<CanvassingEfforts>, List<string>, int> returnJSON =
+                        JsonConvert.DeserializeObject<ReturnJSON<List<CanvassingEfforts>, List<string>, int>>(record);
+                    Console.WriteLine($"Name: {returnJSON.Data[0].Name}");
                 }
                 else
                 {

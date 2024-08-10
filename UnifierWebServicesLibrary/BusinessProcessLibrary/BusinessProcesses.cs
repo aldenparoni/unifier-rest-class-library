@@ -88,6 +88,7 @@ namespace BusinessProcessLibrary
         }
 
         // Constructor for deserializing JSON-formatted string
+        [JsonConstructor]
         public EngineersSupplementalInstructions(string? thirdParty, string? associatedRFI, string? cppName, string? cppNum, string? contract,
             string? contractorRef, string? costImpact, string? creationDate, string? creator, string? creatorCompany, string? decision,
             string? dueDate, string? esiStatus, string? notes, string? prefixPublishPath, string? proposedDecision, string? publishPath,
@@ -224,6 +225,7 @@ namespace BusinessProcessLibrary
         }
 
         // Constructor for deserializing JSON-formatted string
+        [JsonConstructor]
         public CanvassingEfforts(string? endDate, string? recordLastUpdate, string? creationDate, string? canvassingProject, 
             string? allEncompassing, string? recordNo, string? @void, string? creator, string? startDate, string? publishPath,
             string? bpRecordURL, string? name, string? status, string? integrationKey, string? attachCount)
