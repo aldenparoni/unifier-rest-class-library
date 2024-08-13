@@ -3,7 +3,7 @@ using ConsoleAppLibrary;
 
 namespace TestConsoleApp
 {
-    internal class Program
+    internal class ConsoleApp
     {
         static void Main() 
         {

@@ -129,17 +129,17 @@ namespace BusinessProcessLibrary
             WorkflowDetails workflowDetails = new("Any Name", "System Integration", "Submit");
             Options options = new(projectNum, "Engineer's Supplemental Instructions (ESI)", workflowDetails);
 
-            Console.WriteLine("Please enter record information below:");
-            Console.Write("\n                                 Title: ");
+            Console.WriteLine("Please enter record information below:\n");
+            Console.Write("                                   Title: ");
             string? esiTitle = Console.ReadLine();
             Console.Write("                 Cost Impact (Yes or No): ");
             string? costImpact = Console.ReadLine();
             Console.Write("             Schedule Impact (Yes or No): ");
-            string? scheduleImpact = Console.ReadLine();
+            string? schedImpact = Console.ReadLine();
             Console.Write("      Contract (default: CT-HRT-2000106): ");
             string? contractNum = Console.ReadLine();
             Console.Write("  Associated RFI (enter a record number): ");
-            string? associatedRFI = Console.ReadLine();
+            string? assocRFI = Console.ReadLine();
             Console.Write("                     3rd Party Reviewers: ");
             string? thirdParty = Console.ReadLine();
             Console.Write("                    Contractor Reference: ");
@@ -151,15 +151,36 @@ namespace BusinessProcessLibrary
 
             List<EngineersSupplementalInstructions> data =
             [
-                new EngineersSupplementalInstructions(esiTitle, costImpact, scheduleImpact, contractNum, associatedRFI,
-                            thirdParty, contractRef, notes, specs)
+                new EngineersSupplementalInstructions(esiTitle, costImpact, schedImpact, contractNum, assocRFI, thirdParty, contractRef, notes, specs)
             ];
 
             JSONBody<Options, List<EngineersSupplementalInstructions>> jsonBody = new(options, data);
             string body = JsonConvert.SerializeObject(jsonBody, Formatting.Indented);
 
             Console.WriteLine($"\nThank you. Now creating record in Unifier...\n");
-            Console.WriteLine(UnifierRequests.CreateBPRecord(user, body));
+            string requestContent = UnifierRequests.CreateBPRecord(user, body);
+            
+            if (requestContent != string.Empty)
+            {
+                // Deserialize the JSON-formatted string into a ReturnJSON object
+                ReturnJSON<List<EngineersSupplementalInstructions>, List<string>, int> returnJSON =
+                    JsonConvert.DeserializeObject<ReturnJSON<List<EngineersSupplementalInstructions>, List<string>, int>>(requestContent);
+                if (returnJSON.Status == 200)
+                {
+                    Console.WriteLine($"ESI record creation successful! Here's the full record information:\n");
+                    UnifierRequests.PrintRecordInfo(returnJSON.Data[0]);
+                    Console.WriteLine("\nNow returning to main menu...");
+                }
+                else
+                {
+                    Console.WriteLine("There was an error in attempting to create the record.");
+                    Console.WriteLine($"{returnJSON.Status}: {returnJSON.Message[0]}");
+                    Console.WriteLine("No record was created. Now returning to main menu...");
+                }
+                return;
+            }
+
+            Console.WriteLine("The HTTP request returned a null response. Now returning to main menu...");
         }
     }
 
@@ -213,7 +234,7 @@ namespace BusinessProcessLibrary
 
         // Constructor for creating new Canvassing Effort record
         public CanvassingEfforts(string? name, string? canvassingProject, string? startDate, string? endDate, 
-            string? allEncompassing, string? status, string? @void)
+            string? allEncompassing, string? status, string? isVoid)
         {
             Name = name;
             CanvassingProject = canvassingProject;
@@ -221,13 +242,13 @@ namespace BusinessProcessLibrary
             EndDate = endDate;
             AllEncompassingEffort = allEncompassing;
             Status = status;
-            Void = @void;
+            Void = isVoid;
         }
 
         // Constructor for deserializing JSON-formatted string
         [JsonConstructor]
         public CanvassingEfforts(string? endDate, string? recordLastUpdate, string? creationDate, string? canvassingProject, 
-            string? allEncompassing, string? recordNo, string? @void, string? creator, string? startDate, string? publishPath,
+            string? allEncompassing, string? recordNo, string? isVoid, string? creator, string? startDate, string? publishPath,
             string? bpRecordURL, string? name, string? status, string? integrationKey, string? attachCount)
         {
             EndDate = endDate;
@@ -236,7 +257,7 @@ namespace BusinessProcessLibrary
             CanvassingProject = canvassingProject;
             AllEncompassingEffort = allEncompassing;
             RecordNo = recordNo;
-            Void = @void;
+            Void = isVoid;
             Creator = creator;
             StartDate = startDate;
             PublishPath = publishPath;
@@ -282,7 +303,39 @@ namespace BusinessProcessLibrary
             string body = JsonConvert.SerializeObject(jsonBody, Formatting.Indented);
 
             Console.WriteLine($"\nThank you. Now creating record in Unifier...\n");
-            Console.WriteLine(UnifierRequests.CreateBPRecord(user, body));
+            string requestContent = UnifierRequests.CreateBPRecord(user, body);
+
+            if (requestContent != string.Empty)
+            {
+                // Deserialize the JSON-formatted string into a ReturnJSON object
+                ReturnJSON<List<CanvassingEfforts>, List<string>, int> returnJSON =
+                    JsonConvert.DeserializeObject<ReturnJSON<List<CanvassingEfforts>, List<string>, int>>(requestContent);
+                if (returnJSON.Status == 200)
+                {
+                    Console.WriteLine($"Canvassing Efforts record creation successful! Here's the full record information:\n");
+                    UnifierRequests.PrintRecordInfo(returnJSON.Data[0]);
+                    Console.WriteLine("Now returning to main menu...");
+                }
+                else
+                {
+                    Console.WriteLine("There was an error in attempting to create the record.");
+                    Console.WriteLine($"{returnJSON.Status}: {returnJSON.Message[0]}");
+                    Console.WriteLine("No record was created. Now returning to main menu...");
+                }
+            }
+
+            Console.WriteLine("The HTTP request returned a null response. Now returning to main menu...");
+        }
+
+        public void IterateEditableFields()
+        {
+            Console.WriteLine($"Effort Name: {Name}");
+            Console.WriteLine($"Canvassing Project: {CanvassingProject}");
+            Console.WriteLine($"Start Date: {StartDate}");
+            Console.WriteLine($"End Date: {EndDate}");
+            Console.WriteLine($"All-Encompassing Effort: {AllEncompassingEffort}");
+            Console.WriteLine($"Status: {Status}");
+            Console.WriteLine($"Void: {Void}");
         }
     }
 }

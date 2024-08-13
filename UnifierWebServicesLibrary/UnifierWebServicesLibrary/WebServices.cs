@@ -1,4 +1,6 @@
-﻿using RestSharp;
+﻿using System;
+using System.Reflection;
+using RestSharp;
 using RestSharp.Authenticators;
 using Newtonsoft.Json;
 
@@ -196,6 +198,16 @@ namespace UnifierWebServicesLibrary
             }
             // Otherwise, set client environment to Stage
             return new RestClient("https://unifier.oraclecloud.com/hart/stage");
+        }
+
+        public static void PrintRecordInfo(object record)
+        {
+            foreach(PropertyInfo property in record.GetType().GetProperties())
+            {
+                string name = property.Name;
+                object value = property.GetValue(record);
+                Console.WriteLine($"{name}: {value}");
+            }
         }
     }
 

@@ -1,6 +1,5 @@
 ﻿using BusinessProcessLibrary;
 using Newtonsoft.Json;
-using System.Net.Http.Headers;
 using UnifierWebServicesLibrary;
 
 namespace ConsoleAppLibrary
@@ -60,7 +59,29 @@ namespace ConsoleAppLibrary
 
             // Execute the REST request
             Console.WriteLine($"\nGetting record number {recordNum} of {bpName} in {projectNum}...\n");
-            Console.WriteLine(UnifierRequests.GetBPRecord(user, projectNum, inputJSON)); 
+            string responseContent = UnifierRequests.GetBPRecord(user, projectNum, inputJSON);
+
+            if (responseContent != string.Empty)
+            {
+                // Deserialize the JSON-formatted string into a ReturnJSON object
+                ReturnJSON<object, List<string>, int> returnJSON =
+                    JsonConvert.DeserializeObject<ReturnJSON<object, List<string>, int>>(responseContent);
+
+                if (returnJSON.Status == 200)
+                {
+                    Console.WriteLine($"Record found! Here's the full record information:\n");
+                    Console.WriteLine(responseContent);
+                }
+                else
+                {
+                    Console.WriteLine($"There was an error in searching for the record: Status code {returnJSON.Status} ({returnJSON.Message[0]})");
+                }
+
+                Console.WriteLine("Now returning to main menu...");
+                return;
+            }
+
+            Console.WriteLine("The HTTP request returned a null response. Now returning to main menu...");
         }
 
         /// <summary>
@@ -148,15 +169,18 @@ namespace ConsoleAppLibrary
                 {
                     Console.WriteLine($"\nYou have chosen {bpChoice}. Canvassing Efforts");
                     string record = GetRecordToUpdateApp(user, "Canvassing Efforts");
+
+                    ReturnJSON<List<CanvassingEfforts>, List<string>, int> returnJSON =
+                        JsonConvert.DeserializeObject<ReturnJSON<List<CanvassingEfforts>, List<string>, int>>(record);
+
                     if (record == string.Empty)
                     {
                         Console.WriteLine("\nSorry, the record was not found. Returning to main menu...");
                         return;
                     }
-                    Console.WriteLine("\nRecord found!");
-                    ReturnJSON<List<CanvassingEfforts>, List<string>, int> returnJSON =
-                        JsonConvert.DeserializeObject<ReturnJSON<List<CanvassingEfforts>, List<string>, int>>(record);
-                    Console.WriteLine($"Name: {returnJSON.Data[0].Name}");
+                    Console.WriteLine("\nRecord found!\n");
+
+                    returnJSON.Data[0].IterateEditableFields();
                 }
                 else
                 {
