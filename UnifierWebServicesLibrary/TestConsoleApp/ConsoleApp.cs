@@ -40,7 +40,11 @@ namespace TestConsoleApp
                         }
                         else if (userNav == 4)
                         {
-                            Console.WriteLine("\nYou have selected 4: Exit program");
+                            Console.WriteLine("\nYou have selected 4: Switch environments");
+                        }
+                        else if (userNav == 5)
+                        {
+                            Console.WriteLine("\nYou have selected 5: Exit program");
                             continueLoop = false;
                         }
                         else

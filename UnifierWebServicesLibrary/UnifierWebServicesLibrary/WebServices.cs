@@ -1,5 +1,4 @@
-﻿using System;
-using System.Reflection;
+﻿using System.Reflection;
 using RestSharp;
 using RestSharp.Authenticators;
 using Newtonsoft.Json;
@@ -109,6 +108,10 @@ namespace UnifierWebServicesLibrary
             var request = new RestRequest("/ws/rest/service/v2/bp/record", Method.Put);
             request.AddHeader("Authorization", $"Bearer {user.Token}");
             request.AddJsonBody(jsonBody);
+
+            // Uncomment the two lines below for debugging the request
+            // ExecuteDebug(client, request);
+
             var response = client.Execute(request);
             return response.Content ?? string.Empty;
         }
@@ -200,6 +203,10 @@ namespace UnifierWebServicesLibrary
             return new RestClient("https://unifier.oraclecloud.com/hart/stage");
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="record"></param>
         public static void PrintRecordInfo(object record)
         {
             foreach(PropertyInfo property in record.GetType().GetProperties())
@@ -207,6 +214,50 @@ namespace UnifierWebServicesLibrary
                 string name = property.Name;
                 object value = property.GetValue(record);
                 Console.WriteLine($"{name}: {value}");
+            }
+        }
+
+        public static void PostPutRequestCheck(int requestType, string? requestContent)
+        {
+            if (requestContent != string.Empty)
+            {
+                Console.WriteLine("The HTTP request returned a null response. Now returning to main menu...");
+                return;
+            }
+
+            PostPutReturnJSON<List<string>, List<string>, int, int> returnJSON = 
+                JsonConvert.DeserializeObject<PostPutReturnJSON<List<string>, List<string>, int, int>>(requestContent);
+
+            if (requestType == 1)
+            {
+                if (returnJSON.Status == 200)
+                {
+                    Console.WriteLine($"Record creation successful! Here's the full JSON the request returned:\n");
+                    Console.WriteLine(requestContent);
+                    Console.WriteLine("\nNow returning to main menu...");
+                }
+                else
+                {
+                    Console.WriteLine("There was an error in attempting to create the record.");
+                    Console.WriteLine($"{returnJSON.Status}: {returnJSON.Message[0]}");
+                    Console.WriteLine("\nNo record was created. Now returning to main menu...");
+                }
+
+            }
+            else
+            {
+                if (returnJSON.Status == 200)
+                {
+                    Console.WriteLine($"Record update successful! Here's the full JSON the request returned:\n");
+                    Console.WriteLine(requestContent);
+                    Console.WriteLine("\nNow returning to main menu...");
+                }
+                else
+                {
+                    Console.WriteLine("There was an error in attempting to update the record.");
+                    Console.WriteLine($"{returnJSON.Status}: {returnJSON.Message[0]}");
+                    Console.WriteLine("\nThe record was not updated. Now returning to main menu...");
+                }
             }
         }
     }
@@ -352,7 +403,7 @@ namespace UnifierWebServicesLibrary
         public T2? Data { get; set; } = data;
     }
 
-    public class ReturnJSON<T1, T2, T3> (T1? data, T2? message, T3? status)
+    public class GetReturnJSON<T1, T2, T3> (T1? data, T2? message, T3? status)
     {
         [JsonProperty("data")]
         public T1? Data { get; set; } = data;
@@ -362,5 +413,20 @@ namespace UnifierWebServicesLibrary
 
         [JsonProperty("status")]
         public T3? Status { get; set; } = status;
+    }
+
+    public class PostPutReturnJSON<T1, T2, T3, T4> (T1? data, T2? message, T3? status, T4 restAuditID)
+    {
+        [JsonProperty("data")]
+        public T1? Data { get; set; } = data;
+
+        [JsonProperty("message")]
+        public T2? Message { get; set; } = message;
+
+        [JsonProperty("status")]
+        public T3? Status { get; set; } = status;
+
+        [JsonProperty("rest_audit_id")]
+        public T4? RestAuditID { get; set; } = restAuditID;
     }
 }

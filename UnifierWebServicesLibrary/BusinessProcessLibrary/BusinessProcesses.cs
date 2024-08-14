@@ -159,28 +159,8 @@ namespace BusinessProcessLibrary
 
             Console.WriteLine($"\nThank you. Now creating record in Unifier...\n");
             string requestContent = UnifierRequests.CreateBPRecord(user, body);
-            
-            if (requestContent != string.Empty)
-            {
-                // Deserialize the JSON-formatted string into a ReturnJSON object
-                ReturnJSON<List<EngineersSupplementalInstructions>, List<string>, int> returnJSON =
-                    JsonConvert.DeserializeObject<ReturnJSON<List<EngineersSupplementalInstructions>, List<string>, int>>(requestContent);
-                if (returnJSON.Status == 200)
-                {
-                    Console.WriteLine($"ESI record creation successful! Here's the full record information:\n");
-                    UnifierRequests.PrintRecordInfo(returnJSON.Data[0]);
-                    Console.WriteLine("\nNow returning to main menu...");
-                }
-                else
-                {
-                    Console.WriteLine("There was an error in attempting to create the record.");
-                    Console.WriteLine($"{returnJSON.Status}: {returnJSON.Message[0]}");
-                    Console.WriteLine("No record was created. Now returning to main menu...");
-                }
-                return;
-            }
 
-            Console.WriteLine("The HTTP request returned a null response. Now returning to main menu...");
+            UnifierRequests.PostPutRequestCheck(1, requestContent);
         }
     }
 
@@ -278,8 +258,8 @@ namespace BusinessProcessLibrary
             string? projectNum = Console.ReadLine();
             Options options = new(projectNum, "Canvassing Efforts");
 
-            Console.WriteLine("Please enter record information below.");
-            Console.Write("\n                                        Name: ");
+            Console.WriteLine("Please enter record information below.\n");
+            Console.Write("                                 Effort Name: ");
             string? effortName = Console.ReadLine();
             Console.Write("  Canvassing Project (enter a record number): ");
             string? canvasProject = Console.ReadLine();
@@ -305,37 +285,44 @@ namespace BusinessProcessLibrary
             Console.WriteLine($"\nThank you. Now creating record in Unifier...\n");
             string requestContent = UnifierRequests.CreateBPRecord(user, body);
 
-            if (requestContent != string.Empty)
-            {
-                // Deserialize the JSON-formatted string into a ReturnJSON object
-                ReturnJSON<List<CanvassingEfforts>, List<string>, int> returnJSON =
-                    JsonConvert.DeserializeObject<ReturnJSON<List<CanvassingEfforts>, List<string>, int>>(requestContent);
-                if (returnJSON.Status == 200)
-                {
-                    Console.WriteLine($"Canvassing Efforts record creation successful! Here's the full record information:\n");
-                    UnifierRequests.PrintRecordInfo(returnJSON.Data[0]);
-                    Console.WriteLine("Now returning to main menu...");
-                }
-                else
-                {
-                    Console.WriteLine("There was an error in attempting to create the record.");
-                    Console.WriteLine($"{returnJSON.Status}: {returnJSON.Message[0]}");
-                    Console.WriteLine("No record was created. Now returning to main menu...");
-                }
-            }
-
-            Console.WriteLine("The HTTP request returned a null response. Now returning to main menu...");
+            UnifierRequests.PostPutRequestCheck(1, requestContent);
         }
 
-        public void IterateEditableFields()
+        /// <summary>
+        /// This method takes user input to update all editable fields in the CanvassingEfforts object.
+        /// </summary>
+        public void UpdateEffort()
         {
-            Console.WriteLine($"Effort Name: {Name}");
-            Console.WriteLine($"Canvassing Project: {CanvassingProject}");
-            Console.WriteLine($"Start Date: {StartDate}");
-            Console.WriteLine($"End Date: {EndDate}");
-            Console.WriteLine($"All-Encompassing Effort: {AllEncompassingEffort}");
-            Console.WriteLine($"Status: {Status}");
-            Console.WriteLine($"Void: {Void}");
+            Console.WriteLine("\nWe will now begin updating the record.");
+
+            Console.WriteLine($"\n                                     Effort Name: {Name}");
+            Console.Write("                                 New Effort Name: ");
+            Name = Console.ReadLine();
+
+            Console.WriteLine($"\n                              Canvassing Project: {CanvassingProject}");
+            Console.Write("  New Canvassing Project (enter a record number): ");
+            CanvassingProject = Console.ReadLine();
+
+            Console.WriteLine($"\n                                      Start Date: {StartDate}");
+            Console.Write("            New Start Date (MM-DD-YYYY HH:MM:SS): ");
+            StartDate = Console.ReadLine();
+
+            Console.WriteLine($"\n                                        End Date: {EndDate}");
+            Console.Write("              New End Date (MM-DD-YYYY HH:MM:SS): ");
+            EndDate = Console.ReadLine();
+
+            Console.WriteLine($"\n                         All-Encompassing Effort: {AllEncompassingEffort}");
+            Console.Write("         New All-Encompassing Effort (Yes or No): ");
+            AllEncompassingEffort = Console.ReadLine();
+
+            Console.WriteLine($"\n                                          Status: {Status}");
+            Console.Write("           New Status (Active, Inactive, Voided): ");
+            Status = Console.ReadLine();
+
+            Console.WriteLine($"\n                                            Void: {Void}");
+            Console.Write("                  New Void (1 for yes, 0 for no): ");
+            Void = Console.ReadLine();
         }
+
     }
 }

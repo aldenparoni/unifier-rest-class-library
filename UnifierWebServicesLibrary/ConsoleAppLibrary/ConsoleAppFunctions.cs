@@ -35,8 +35,9 @@ namespace ConsoleAppLibrary
             Console.WriteLine("   1: Get a Business Process record");
             Console.WriteLine("   2: Create a new Business Process record");
             Console.WriteLine("   3: Update an existing Business Process record");
-            Console.WriteLine("   4: Exit program");
-            Console.Write("Please enter a number between 1 - 4: ");
+            Console.WriteLine("   4: Switch environments");
+            Console.WriteLine("   5: Exit program");
+            Console.Write("Please enter a number between 1 - 5: ");
         }
 
         /// <summary>
@@ -64,8 +65,8 @@ namespace ConsoleAppLibrary
             if (responseContent != string.Empty)
             {
                 // Deserialize the JSON-formatted string into a ReturnJSON object
-                ReturnJSON<object, List<string>, int> returnJSON =
-                    JsonConvert.DeserializeObject<ReturnJSON<object, List<string>, int>>(responseContent);
+                GetReturnJSON<object, List<string>, int> returnJSON =
+                    JsonConvert.DeserializeObject<GetReturnJSON<object, List<string>, int>>(responseContent);
 
                 if (returnJSON.Status == 200)
                 {
@@ -77,7 +78,7 @@ namespace ConsoleAppLibrary
                     Console.WriteLine($"There was an error in searching for the record: Status code {returnJSON.Status} ({returnJSON.Message[0]})");
                 }
 
-                Console.WriteLine("Now returning to main menu...");
+                Console.WriteLine("\nNow returning to main menu...");
                 return;
             }
 
@@ -161,26 +162,48 @@ namespace ConsoleAppLibrary
                         return;
                     }
                     Console.WriteLine("\nRecord found!");
-                    ReturnJSON<List<EngineersSupplementalInstructions>, List<string>, int> returnJSON =
-                        JsonConvert.DeserializeObject<ReturnJSON<List<EngineersSupplementalInstructions>, List<string>, int>>(record);
-                    Console.WriteLine(returnJSON.Data[0]);
                 }
                 else if (bpChoice == 2)
                 {
                     Console.WriteLine($"\nYou have chosen {bpChoice}. Canvassing Efforts");
-                    string record = GetRecordToUpdateApp(user, "Canvassing Efforts");
 
-                    ReturnJSON<List<CanvassingEfforts>, List<string>, int> returnJSON =
-                        JsonConvert.DeserializeObject<ReturnJSON<List<CanvassingEfforts>, List<string>, int>>(record);
+                    Console.WriteLine("\nWe will get the record you want to update.");
+
+                    Console.Write("\nEnter the project number: ");
+                    string? projectNum = Console.ReadLine();
+                    Console.Write("Enter the record number: ");
+                    string? recordNum = Console.ReadLine();
+                    GetRecordInput input = new("Canvassing Efforts", recordNum);
+                    string inputJSON = JsonConvert.SerializeObject(input);
+                    Console.WriteLine($"\nGetting record number {recordNum} of Canvassing Efforts in {projectNum}...");
+                    string record = UnifierRequests.GetBPRecord(user, projectNum, inputJSON);
+ 
+                    GetReturnJSON<List<CanvassingEfforts>, List<string>, int> initReturn =
+                        JsonConvert.DeserializeObject<GetReturnJSON<List<CanvassingEfforts>, List<string>, int>>(record);
 
                     if (record == string.Empty)
                     {
                         Console.WriteLine("\nSorry, the record was not found. Returning to main menu...");
                         return;
                     }
-                    Console.WriteLine("\nRecord found!\n");
 
-                    returnJSON.Data[0].IterateEditableFields();
+                    Console.WriteLine("\nRecord found!");
+
+                    initReturn.Data[0].UpdateEffort();
+
+                    Console.WriteLine("\nHere's the updated record information:\n");
+                    UnifierRequests.PrintRecordInfo(initReturn.Data[0]);
+
+                    Console.WriteLine("\nNow sending the update request...");
+
+                    // Set up the JSON body to send the update request
+                    Options options = new (projectNum, "Canvassing Efforts");
+                    JSONBody<Options, List<CanvassingEfforts>> updateJSON = new (options, initReturn.Data);
+                    string body = JsonConvert.SerializeObject(updateJSON);
+
+                    string requestContent = UnifierRequests.UpdateBPRecord(user, body);
+
+                    UnifierRequests.PostPutRequestCheck(2, requestContent);
                 }
                 else
                 {
@@ -204,6 +227,7 @@ namespace ConsoleAppLibrary
         public static string GetRecordToUpdateApp(IntegrationUser user, string bpName)
         {
             Console.WriteLine("\nWe will get the record you want to update.");
+
             Console.Write("\nEnter the project number: ");
             string? projectNum = Console.ReadLine();
             Console.Write("Enter the record number: ");

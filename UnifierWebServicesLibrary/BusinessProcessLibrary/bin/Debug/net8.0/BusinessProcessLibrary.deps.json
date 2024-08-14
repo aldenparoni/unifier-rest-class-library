@@ -37,7 +37,10 @@
           "RestSharp": "111.3.0"
         },
         "runtime": {
-          "UnifierWebServicesLibrary.dll": {}
+          "UnifierWebServicesLibrary.dll": {
+            "assemblyVersion": "1.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       }
     }
