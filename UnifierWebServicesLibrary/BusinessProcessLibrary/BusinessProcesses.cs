@@ -124,11 +124,13 @@ namespace BusinessProcessLibrary
         /// <param name="user">The IntegrationUser object instance used throughout app runtime.</param>
         public static void CreateESI(IntegrationUser user)
         {
+            // Set up the Options portion of the JSON body
             Console.Write("\nEnter the project number: ");
             string? projectNum = Console.ReadLine();
             WorkflowDetails workflowDetails = new("Any Name", "System Integration", "Submit");
             Options options = new(projectNum, "Engineer's Supplemental Instructions (ESI)", workflowDetails);
 
+            // Gather user input of new record information
             Console.WriteLine("Please enter record information below:\n");
             Console.Write("                                   Title: ");
             string? esiTitle = Console.ReadLine();
@@ -149,6 +151,7 @@ namespace BusinessProcessLibrary
             Console.Write("                          Specifications: ");
             string? specs = Console.ReadLine();
 
+            // Set up the Data portion of the JSON body
             List<EngineersSupplementalInstructions> data =
             [
                 new EngineersSupplementalInstructions(esiTitle, costImpact, schedImpact, contractNum, assocRFI, thirdParty, contractRef, notes, specs)
@@ -157,10 +160,57 @@ namespace BusinessProcessLibrary
             JSONBody<Options, List<EngineersSupplementalInstructions>> jsonBody = new(options, data);
             string body = JsonConvert.SerializeObject(jsonBody, Formatting.Indented);
 
+            // Send the HTTP request
             Console.WriteLine($"\nThank you. Now creating record in Unifier...\n");
             string requestContent = UnifierRequests.CreateBPRecord(user, body);
 
+            // Check if the HTTP request returned a 200 status code
             UnifierRequests.PostPutRequestCheck(1, requestContent);
+        }
+
+        /// <summary>
+        /// This method takes user input to update all editable fields in the ESI object.
+        /// The fields that are updated in this method are that which are in the Creation step.
+        /// </summary>
+        public void UpdateESI()
+        {
+            Console.WriteLine("\nWe will now begin updating the record.");
+
+            Console.WriteLine($"\n                                       Title: {Title}");
+            Console.Write("                                   New Title: ");
+            Title = Console.ReadLine();
+
+            Console.WriteLine($"\n                                 Cost Impact: {CostImpact}");
+            Console.Write($"                 New Cost Impact (Yes or No): ");
+            CostImpact = Console.ReadLine();
+
+            Console.WriteLine($"\n                             Schedule Impact: {ScheduleImpact}");
+            Console.Write($"             New Schedule Impact (Yes or No): ");
+            ScheduleImpact = Console.ReadLine();
+
+            Console.WriteLine($"\n                                    Contract: {Contract}");
+            Console.Write($"      New Contract (default: CT-HRT-2000106): ");
+            Contract = Console.ReadLine();
+
+            Console.WriteLine($"\n                              Associated RFI: {AssociatedRFI}");
+            Console.Write($"  New Associated RFI (enter a record number): ");
+            AssociatedRFI = Console.ReadLine();
+
+            Console.WriteLine($"\n                         3rd Party Reviewers: {ThirdPartyReviewers}");
+            Console.Write($"                     New 3rd Party Reviewers: ");
+            ThirdPartyReviewers = Console.ReadLine();
+
+            Console.WriteLine($"\n                        Contractor Reference: {ContractorReference}");
+            Console.Write($"                    New Contractor Reference: ");
+            ContractorReference = Console.ReadLine();
+
+            Console.WriteLine($"\n                                       Notes: {Notes}");
+            Console.Write($"                                   New Notes: ");
+            Notes = Console.ReadLine();
+
+            Console.WriteLine($"\n                              Specifications: {Specifications}");
+            Console.Write($"                          New Specifications: ");
+            Specifications = Console.ReadLine();
         }
     }
 
@@ -254,10 +304,12 @@ namespace BusinessProcessLibrary
         /// <param name="user">The IntegrationUser object instance used throughout app runtime.</param>
         public static void CreateEffort (IntegrationUser user)
         {
+            // Set up the Options portion of the JSON body
             Console.Write("\nEnter the project number: ");
             string? projectNum = Console.ReadLine();
             Options options = new(projectNum, "Canvassing Efforts");
 
+            // Gather user input of new record information
             Console.WriteLine("Please enter record information below.\n");
             Console.Write("                                 Effort Name: ");
             string? effortName = Console.ReadLine();
@@ -274,6 +326,7 @@ namespace BusinessProcessLibrary
             Console.Write("                  Void (1 for yes, 0 for no): ");
             string? isVoid = Console.ReadLine();
 
+            // Set up the Data portion of the JSON body
             List<CanvassingEfforts> data =
             [
                 new CanvassingEfforts(effortName, canvasProject, startDate, endDate, allEncompassing, status, isVoid)
@@ -282,9 +335,11 @@ namespace BusinessProcessLibrary
             JSONBody<Options, List<CanvassingEfforts>> jsonBody = new(options, data);
             string body = JsonConvert.SerializeObject(jsonBody, Formatting.Indented);
 
+            // Send the HTTP request
             Console.WriteLine($"\nThank you. Now creating record in Unifier...\n");
             string requestContent = UnifierRequests.CreateBPRecord(user, body);
 
+            // Check if the HTTP request returned a 200 status code
             UnifierRequests.PostPutRequestCheck(1, requestContent);
         }
 
@@ -323,6 +378,5 @@ namespace BusinessProcessLibrary
             Console.Write("                  New Void (1 for yes, 0 for no): ");
             Void = Console.ReadLine();
         }
-
     }
 }

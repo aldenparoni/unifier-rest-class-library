@@ -7,30 +7,19 @@ namespace ConsoleAppLibrary
     public class ConsoleAppFunctions
     {
         /// <summary>
-        /// This method takes user input to create a new IntegrationUser object.
-        /// </summary>
-        /// <returns>A new IntegrationUser object that will be used throughout app runtime.</returns>
-        public static IntegrationUser GetToken()
-        {
-            Console.WriteLine("Welcome to Unifier Web Services!");
-
-            // Gather user input
-            Console.Write("\nEnter 0 for Production, or 1 for Stage: ");
-            int userEnv = Convert.ToInt32(Console.ReadLine());
-            Console.Write("Enter your username: $$");
-            string? username = "$$" + Console.ReadLine();
-            Console.Write("Enter your password: ");
-            string? password = UnifierRequests.ReadPassword();
-
-            // Create new IntegrationUser instance
-            return new IntegrationUser(userEnv, username, password);
-        }
-
-        /// <summary>
         /// This method prints the menu items of the console app program.
         /// </summary>
-        public static void Menu()
+        /// <param name="environment"></param>
+        public static void Menu(int environment)
         {
+            if (environment == 0)
+            {
+                Console.WriteLine("\nYou are currently in production.");
+            }
+            else
+            {
+                Console.WriteLine("\nYou are currently in stage.");
+            }
             Console.WriteLine("\nUnifier Web Services Menu:");
             Console.WriteLine("   1: Get a Business Process record");
             Console.WriteLine("   2: Create a new Business Process record");
@@ -87,6 +76,8 @@ namespace ConsoleAppLibrary
 
         /// <summary>
         /// This method serves as the menu of the create BP record option.
+        /// It also takes user input and sets up the REST request of creating a new Business Process record.
+        /// For the console app prototype, the user can create new ESI records or Canvassing Efforts records.
         /// </summary>
         /// <param name="user">The IntegrationUser object instance used throughout app runtime.</param>
         public static void CreateRecordApp(IntegrationUser user)
@@ -131,8 +122,10 @@ namespace ConsoleAppLibrary
 
         /// <summary>
         /// This method serves as the menu of the update BP record option.
+        /// It also takes user input and sets up the REST request of updating an existing Business Process record.
+        /// For the console app prototype, the user can update existing ESI records or Canvassing Efforts records.
         /// </summary>
-        /// <param name="user"></param>
+        /// <param name="user">The IntegrationUser object instance used throughout app runtime.</param>
         public static void UpdateRecordApp(IntegrationUser user)
         {
             // Declare user input variable for this function
@@ -155,33 +148,47 @@ namespace ConsoleAppLibrary
                 if (bpChoice == 1)
                 {
                     Console.WriteLine($"\nYou have chosen {bpChoice}. Engineer's Supplemental Instructions (ESI)");
-                    string record = GetRecordToUpdateApp(user, "Engineer's Supplemental Instructions (ESI)");
-                    if (record == string.Empty)
+
+                    var (projectNum, record) = GetRecordToUpdateApp(user, "Engineer's Supplemental Instructions (ESI)");
+
+                    GetReturnJSON<List<EngineersSupplementalInstructions>, List<string>, int> initReturn =
+                        JsonConvert.DeserializeObject<GetReturnJSON<List<EngineersSupplementalInstructions>, List<string>, int>>(record);
+
+                    if (record == string.Empty || initReturn.Status != 200)
                     {
                         Console.WriteLine("\nSorry, the record was not found. Returning to main menu...");
                         return;
                     }
+
                     Console.WriteLine("\nRecord found!");
+
+                    initReturn.Data[0].UpdateESI();
+
+                    Console.WriteLine("\nHere's the updated record information:\n");
+                    UnifierRequests.PrintRecordInfo(initReturn.Data[0]);
+
+                    Console.WriteLine("\nNow sending the update request...\n");
+
+                    // Set up the JSON body to send the update request
+                    WorkflowDetails workflowDetails = new("Lead Review", "Update Status");
+                    Options options = new(projectNum, "Engineer's Supplemental Instructions (ESI)", workflowDetails);
+                    JSONBody<Options, List<EngineersSupplementalInstructions>> updateJSON = new(options, initReturn.Data);
+                    string body = JsonConvert.SerializeObject(updateJSON);
+
+                    string requestContent = UnifierRequests.UpdateBPRecord(user, body);
+
+                    UnifierRequests.PostPutRequestCheck(2, requestContent);
                 }
                 else if (bpChoice == 2)
                 {
                     Console.WriteLine($"\nYou have chosen {bpChoice}. Canvassing Efforts");
 
-                    Console.WriteLine("\nWe will get the record you want to update.");
-
-                    Console.Write("\nEnter the project number: ");
-                    string? projectNum = Console.ReadLine();
-                    Console.Write("Enter the record number: ");
-                    string? recordNum = Console.ReadLine();
-                    GetRecordInput input = new("Canvassing Efforts", recordNum);
-                    string inputJSON = JsonConvert.SerializeObject(input);
-                    Console.WriteLine($"\nGetting record number {recordNum} of Canvassing Efforts in {projectNum}...");
-                    string record = UnifierRequests.GetBPRecord(user, projectNum, inputJSON);
+                    var (projectNum, record) = GetRecordToUpdateApp(user, "Canvassing Efforts");
  
                     GetReturnJSON<List<CanvassingEfforts>, List<string>, int> initReturn =
                         JsonConvert.DeserializeObject<GetReturnJSON<List<CanvassingEfforts>, List<string>, int>>(record);
 
-                    if (record == string.Empty)
+                    if (record == string.Empty || initReturn.Status != 200)
                     {
                         Console.WriteLine("\nSorry, the record was not found. Returning to main menu...");
                         return;
@@ -194,7 +201,7 @@ namespace ConsoleAppLibrary
                     Console.WriteLine("\nHere's the updated record information:\n");
                     UnifierRequests.PrintRecordInfo(initReturn.Data[0]);
 
-                    Console.WriteLine("\nNow sending the update request...");
+                    Console.WriteLine("\nNow sending the update request...\n");
 
                     // Set up the JSON body to send the update request
                     Options options = new (projectNum, "Canvassing Efforts");
@@ -219,12 +226,16 @@ namespace ConsoleAppLibrary
         }
 
         /// <summary>
-        /// 
+        /// This method is similar to GetRecordApp(), but is meant to be the first part of UpdateRecordApp(), which is
+        /// to retrive the record and its information the user intends to update.
         /// </summary>
-        /// <param name="user"></param>
-        /// <param name="bpName"></param>
-        /// <returns></returns>
-        public static string GetRecordToUpdateApp(IntegrationUser user, string bpName)
+        /// <param name="user">The IntegrationUser object instance used throughout app runtime.</param>
+        /// <param name="bpName">The name of the business process from which to the get the record.</param>
+        /// <returns>
+        /// The first string that the method returns is the project number.
+        /// The second string that the method returns is either the JSON of the request results, or an empty string.
+        /// </returns>
+        public static (string, string) GetRecordToUpdateApp(IntegrationUser user, string bpName)
         {
             Console.WriteLine("\nWe will get the record you want to update.");
 
@@ -237,7 +248,37 @@ namespace ConsoleAppLibrary
             Console.WriteLine($"\nGetting record number {recordNum} of {bpName} in {projectNum}...");
             string record = UnifierRequests.GetBPRecord(user, projectNum, inputJSON);
             
-            return record ?? string.Empty;
+            if (record == null)
+            {
+                return (string.Empty, string.Empty);
+            }
+
+            return (projectNum, record);
+        }
+
+        /// <summary>
+        /// This method switches the environment in Unifier the user currently works in during runtime,
+        /// from production to stage, or vice versa.
+        /// </summary>
+        /// <param name="environment">An integer value that corresponds to the current envirornment.</param>
+        /// <param name="username">The integration user's username ID in Unifier.</param>
+        /// <param name="password">The integration user's password in Unifier.</param>
+        /// <returns>
+        /// The integer value that returns corresponds to the new environment the user will work in.
+        /// The IntegrationUser object instance that returns contains the auth token of the new environment.
+        /// </returns>
+        public static (int, IntegrationUser) SwitchEnvironment(int environment, string username, string password)
+        {
+            // If current environment is production, switch to stage
+            if (environment == 0)
+            {
+                environment = 1;
+                return (environment, new IntegrationUser(environment, username, password));
+            }
+
+            // Vice versa; if current environment is stage, switch to production
+            environment = 0;
+            return (environment, new IntegrationUser(environment, username, password));
         }
     }
 }

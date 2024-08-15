@@ -10,14 +10,25 @@ namespace TestConsoleApp
             // Initialize program variables and objects
             bool continueLoop = true;
             int userNav;
-            IntegrationUser user = ConsoleAppFunctions.GetToken();
+
+            Console.WriteLine("Welcome to Unifier Web Services!");
+
+            // Gather user input to prepare HTTP request to retrieve auth token
+            Console.Write("\nEnter 0 for Production, or 1 for Stage: ");
+            int userEnv = Convert.ToInt32(Console.ReadLine());
+            Console.Write("Enter your username: $$");
+            string? username = "$$" + Console.ReadLine();
+            Console.Write("Enter your password: ");
+            string? password = UnifierRequests.ReadPassword();
+
+            IntegrationUser user = new (userEnv, username, password);
 
             if (user.Token != string.Empty)
             {
                 while (continueLoop == true)
                 {
                     // Print menu
-                    ConsoleAppFunctions.Menu();
+                    ConsoleAppFunctions.Menu(userEnv);
 
                     try
                     {
@@ -41,6 +52,7 @@ namespace TestConsoleApp
                         else if (userNav == 4)
                         {
                             Console.WriteLine("\nYou have selected 4: Switch environments");
+                            (userEnv, user) = ConsoleAppFunctions.SwitchEnvironment(userEnv, username, password);
                         }
                         else if (userNav == 5)
                         {

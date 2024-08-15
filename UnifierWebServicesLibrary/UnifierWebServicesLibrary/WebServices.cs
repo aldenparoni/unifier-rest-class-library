@@ -22,7 +22,7 @@ namespace UnifierWebServicesLibrary
         /// <returns>The bearer token that will be used during the console app's runtime</returns>
         public static string GetAuthToken(int environment, string username, string password)
         {
-            Console.WriteLine("\nPlease wait as we generate an auth token for you...");
+            Console.WriteLine("\n\nPlease wait as we generate an auth token for you...");
             RestClientOptions? options;
 
             // Set environment to Production
@@ -50,12 +50,19 @@ namespace UnifierWebServicesLibrary
 
             if (response.Content != null)
             {
-                TokenJSON? tokenJSON = JsonConvert.DeserializeObject<TokenJSON>(response.Content);
-                
-                if (tokenJSON != null)
+                try
                 {
-                    Console.WriteLine("\nAuth token successfully generated.");
-                    return tokenJSON.Token;
+                    TokenJSON? tokenJSON = JsonConvert.DeserializeObject<TokenJSON>(response.Content);
+
+                    if (tokenJSON != null)
+                    {
+                        Console.WriteLine("\nAuth token successfully generated.");
+                        return tokenJSON.Token;
+                    }
+                }
+                catch (JsonReaderException ex)
+                {
+                    Console.WriteLine("\nAn error occurred while reading JSON: " + ex.Message);
                 }
             }
 
@@ -204,9 +211,9 @@ namespace UnifierWebServicesLibrary
         }
 
         /// <summary>
-        /// 
+        /// This method takes record information from a JSON and prints its contents in a slightly cleaner fashion.
         /// </summary>
-        /// <param name="record"></param>
+        /// <param name="record">The JSON containing information of a single record.</param>
         public static void PrintRecordInfo(object record)
         {
             foreach(PropertyInfo property in record.GetType().GetProperties())
@@ -217,48 +224,66 @@ namespace UnifierWebServicesLibrary
             }
         }
 
-        public static void PostPutRequestCheck(int requestType, string? requestContent)
+        /// <summary>
+        /// This method is intended to check if a POST or PUT request returned with a 200 status code.
+        /// Currently the method just prints the full contents of the JSON that is returned and prints different messages
+        /// depending on if the request was a POST or a PUT.
+        /// </summary>
+        /// <param name="requestType">An integer value that determines whether the request was a POST or a PUT.</param>
+        /// <param name="content">The JSON that was returned from the REST request.</param>
+        public static void PostPutRequestCheck(int requestType, string? content)
         {
-            if (requestContent != string.Empty)
+            if (content == string.Empty)
             {
                 Console.WriteLine("The HTTP request returned a null response. Now returning to main menu...");
                 return;
             }
 
-            PostPutReturnJSON<List<string>, List<string>, int, int> returnJSON = 
-                JsonConvert.DeserializeObject<PostPutReturnJSON<List<string>, List<string>, int, int>>(requestContent);
-
             if (requestType == 1)
             {
-                if (returnJSON.Status == 200)
-                {
-                    Console.WriteLine($"Record creation successful! Here's the full JSON the request returned:\n");
-                    Console.WriteLine(requestContent);
-                    Console.WriteLine("\nNow returning to main menu...");
-                }
-                else
-                {
-                    Console.WriteLine("There was an error in attempting to create the record.");
-                    Console.WriteLine($"{returnJSON.Status}: {returnJSON.Message[0]}");
-                    Console.WriteLine("\nNo record was created. Now returning to main menu...");
-                }
-
+                Console.WriteLine($"The Create Record request returned a JSON. Here's the full contents: \n\n{content}");
             }
             else
             {
-                if (returnJSON.Status == 200)
-                {
-                    Console.WriteLine($"Record update successful! Here's the full JSON the request returned:\n");
-                    Console.WriteLine(requestContent);
-                    Console.WriteLine("\nNow returning to main menu...");
-                }
-                else
-                {
-                    Console.WriteLine("There was an error in attempting to update the record.");
-                    Console.WriteLine($"{returnJSON.Status}: {returnJSON.Message[0]}");
-                    Console.WriteLine("\nThe record was not updated. Now returning to main menu...");
-                }
+                Console.WriteLine($"The Update Record request returned a JSON. Here's the full contents: \n\n{content}");
             }
+
+            Console.WriteLine("\nNow returning to the main menu...");
+
+            //PostPutReturnJSON<List<string>, List<string>, int, int> returnJSON =
+            //    JsonConvert.DeserializeObject<PostPutReturnJSON<List<string>, List<string>, int, int>>(content);
+
+            //if (requestType == 1)
+            //{
+            //    if (returnJSON.Status == 200)
+            //    {
+            //        Console.WriteLine($"Record creation successful! Here's the full JSON the request returned:\n");
+            //        Console.WriteLine(content);
+            //        Console.WriteLine("\nNow returning to main menu...");
+            //    }
+            //    else
+            //    {
+            //        Console.WriteLine("There was an error in attempting to create the record.");
+            //        Console.WriteLine($"{returnJSON.Status}: {returnJSON.Message[0]}");
+            //        Console.WriteLine("\nNo record was created. Now returning to main menu...");
+            //    }
+
+            //}
+            //else
+            //{
+            //    if (returnJSON.Status == 200)
+            //    {
+            //        Console.WriteLine($"Record update successful! Here's the full JSON the request returned:\n");
+            //        Console.WriteLine(content);
+            //        Console.WriteLine("\nNow returning to main menu...");
+            //    }
+            //    else
+            //    {
+            //        Console.WriteLine("There was an error in attempting to update the record.");
+            //        Console.WriteLine($"{returnJSON.Status}: {returnJSON.Message[0]}");
+            //        Console.WriteLine("\nThe record was not updated. Now returning to main menu...");
+            //    }
+            //}
         }
     }
 
