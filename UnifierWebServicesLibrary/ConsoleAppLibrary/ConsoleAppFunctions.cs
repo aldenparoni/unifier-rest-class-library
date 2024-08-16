@@ -1,5 +1,6 @@
 ﻿using BusinessProcessLibrary;
 using Newtonsoft.Json;
+using System.Runtime.CompilerServices;
 using UnifierWebServicesLibrary;
 
 namespace ConsoleAppLibrary
@@ -89,7 +90,8 @@ namespace ConsoleAppLibrary
             Console.WriteLine("\nIn this console application, we have two business processes you can create records for: ");
             Console.WriteLine("  1. Engineer's Supplemental Instructions (ESI)");
             Console.WriteLine("  2. Canvassing Efforts");
-            Console.Write("\nPlease enter 1 or 2 to pick from the above business processes: ");
+            Console.WriteLine("  3. Areas");
+            Console.Write("\nPlease enter 1, 2, or 3 to pick from the above business processes: ");
 
             try
             {
@@ -105,6 +107,11 @@ namespace ConsoleAppLibrary
                 {
                     Console.WriteLine($"\nYou have chosen {bpChoice}. Canvassing Efforts");
                     CanvassingEfforts.CreateEffort(user);
+                }
+                else if (bpChoice == 3)
+                {
+                    Console.WriteLine($"\nYou have chosen {bpChoice}. Areas");
+                    Areas.CreateArea(user);
                 }
                 else
                 {

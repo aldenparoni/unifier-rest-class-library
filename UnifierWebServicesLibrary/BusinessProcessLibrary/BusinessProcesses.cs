@@ -379,4 +379,98 @@ namespace BusinessProcessLibrary
             Void = Console.ReadLine();
         }
     }
+
+    // Areas
+    public class Areas
+    {
+        [JsonProperty("arestastarttb50", NullValueHandling = NullValueHandling.Ignore)]
+        public string? STAStart { get; set; } = null;
+
+        [JsonProperty("uxaAreaNameTB50", NullValueHandling = NullValueHandling.Ignore)]
+        public string? AreaName { get; set; } = null;
+
+        [JsonProperty("uuu_creation_date", NullValueHandling = NullValueHandling.Ignore)]
+        public string? CreationDate { get; set; } = null;
+
+        [JsonProperty("cppnamesysshellname", NullValueHandling = NullValueHandling.Ignore)]
+        public string? CPPName { get; set; } = null;
+
+        [JsonProperty("arestafinishtb50", NullValueHandling = NullValueHandling.Ignore)]
+        public string? STAFinish { get; set; } = null;
+
+        [JsonProperty("record_no", NullValueHandling = NullValueHandling.Ignore)]
+        public string? RecordNo { get; set; } = null;
+
+        [JsonProperty("creator_id", NullValueHandling = NullValueHandling.Ignore)]
+        public string? Creator { get; set; } = null;
+
+        [JsonProperty("title", NullValueHandling  = NullValueHandling.Ignore)]
+        public string? Title { get; set; } = null;
+
+        [JsonProperty("cppnumbersysshellnum", NullValueHandling = NullValueHandling.Ignore)]
+        public string? CPPNumber { get; set; } = null;
+
+        [JsonProperty("status", NullValueHandling = NullValueHandling.Ignore)]
+        public string? Status { get; set; } = null;
+
+        public Areas(string? title, string? status, string? staStart, string? staFinish)
+        {
+            Title = title;
+            Status = status;
+            STAStart = staStart;
+            STAFinish = staFinish;
+        }
+
+        [JsonConstructor]
+        public Areas(string? staStart, string? areaName, string? creationDate, string? cppName, string? staFinish, string? recordNo, 
+            string? creator, string? title, string? cppNumber, string? status) 
+        {
+            STAStart = staStart;
+            AreaName = areaName;
+            CreationDate = creationDate;
+            CPPName = cppName;
+            STAFinish = staFinish;
+            RecordNo = recordNo;
+            Creator = creator;
+            Title = title;
+            CPPNumber = cppNumber;
+            Status = status;
+        }
+
+        public static void CreateArea(IntegrationUser user)
+        {
+            // Set up the Options portion of the JSON body
+            Console.Write("\nEnter the project number: ");
+            string? projectNum = Console.ReadLine();
+            Options options = new(projectNum, "Areas");
+
+            // Gather user input of new record information
+            Console.WriteLine("Please enter record information below.\n");
+            Console.Write("                        Title: ");
+            string? title = Console.ReadLine();
+            Console.Write("  Status (Active or Inactive): ");
+            string? status = Console.ReadLine();
+            Console.Write("                    STA Start: ");
+            string? staStart = Console.ReadLine();
+            Console.Write("                   STA Finish: ");
+            string? staFinish = Console.ReadLine();
+
+            // Set up the Data portion of the JSON body
+            List<Areas> data =
+            [
+                new Areas(title, status, staStart, staFinish)
+            ];
+
+            JSONBody<Options, List<Areas>> jsonBody = new(options, data);
+            string body = JsonConvert.SerializeObject(jsonBody, Formatting.Indented);
+
+            // Send the HTTP request
+            Console.WriteLine($"\nThank you. Now creating record in Unifier...\n");
+            string requestContent = UnifierRequests.CreateBPRecord(user, body);
+
+            // Check if the HTTP request returned a 200 status code
+            UnifierRequests.PostPutRequestCheck(1, requestContent);
+        }
+
+    }
 }
