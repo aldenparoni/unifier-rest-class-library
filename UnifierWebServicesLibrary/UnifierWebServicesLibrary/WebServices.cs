@@ -22,7 +22,7 @@ namespace UnifierWebServicesLibrary
         /// <returns>The bearer token that will be used during the console app's runtime</returns>
         public static string GetAuthToken(int environment, string username, string password)
         {
-            Console.WriteLine("\n\nPlease wait as we generate an auth token for you...");
+            Console.WriteLine("\nPlease wait as we generate an auth token for you...");
             RestClientOptions? options;
 
             // Set environment to Production
@@ -439,7 +439,8 @@ namespace UnifierWebServicesLibrary
         [JsonProperty("status")]
         public T3? Status { get; set; } = status;
     }
-
+    
+    // Currently not being used
     public class PostPutReturnJSON<T1, T2, T3, T4> (T1? data, T2? message, T3? status, T4 restAuditID)
     {
         [JsonProperty("data")]

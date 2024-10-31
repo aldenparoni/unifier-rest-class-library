@@ -1,6 +1,5 @@
-﻿using BusinessProcessLibrary;
-using Newtonsoft.Json;
-using System.Runtime.CompilerServices;
+﻿using Newtonsoft.Json;
+using BusinessProcessLibrary;
 using UnifierWebServicesLibrary;
 
 namespace ConsoleAppLibrary
@@ -8,12 +7,79 @@ namespace ConsoleAppLibrary
     public class ConsoleAppFunctions
     {
         /// <summary>
+        /// This method runs the console application, and calls helper functions for its functionality.
+        /// </summary>
+        public static void RunConsoleApp()
+        {
+            Console.WriteLine("Welcome to Unifier Web Services!");
+
+            // Gather user input to prepare HTTP request to retrieve auth token
+            Console.Write("\nEnter 0 for Production, or 1 for Stage: ");
+            int env = Convert.ToInt32(Console.ReadLine());
+            string username = Environment.GetEnvironmentVariable("unifier_username");
+            string password = Environment.GetEnvironmentVariable("unifier_password");
+
+            IntegrationUser user = new(env, username, password);
+            int nav;
+
+            if (user.Token != string.Empty)
+            {
+                while (true)
+                {
+                    // Print menu
+                    Menu(env);
+
+                    try
+                    {
+                        nav = Convert.ToInt32(Console.ReadLine());
+
+                        if (nav == 1)
+                        {
+                            Console.WriteLine("\nYou have selected 1: Get a Business Process record");
+                            GetRecordApp(user);
+                        }
+                        else if (nav == 2)
+                        {
+                            Console.WriteLine("\nYou have selected 2: Create a new Business Process record");
+                            CreateRecordApp(user);
+                        }
+                        else if (nav == 3)
+                        {
+                            Console.WriteLine("\nYou have selected 3: Update an existing Business Process record");
+                            UpdateRecordApp(user);
+                        }
+                        else if (nav == 4)
+                        {
+                            Console.WriteLine("\nYou have selected 4: Switch environments");
+                            (env, user) = SwitchEnvironment(env, username, password);
+                        }
+                        else if (nav == 5)
+                        {
+                            Console.WriteLine("\nYou have selected 5: Exit program");
+                            break;
+                        }
+                        else
+                        {
+                            Console.WriteLine($"\n{nav} is not within range. Please enter a number within the range.");
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine($"\n{ex.Message}");
+                    }
+                }
+            }
+
+            Console.WriteLine("\nThank you for using this program!");
+        }
+
+        /// <summary>
         /// This method prints the menu items of the console app program.
         /// </summary>
-        /// <param name="environment"></param>
-        public static void Menu(int environment)
+        /// <param name="env"></param>
+        public static void Menu(int env)
         {
-            if (environment == 0)
+            if (env == 0)
             {
                 Console.WriteLine("\nYou are currently in production.");
             }
@@ -267,25 +333,25 @@ namespace ConsoleAppLibrary
         /// This method switches the environment in Unifier the user currently works in during runtime,
         /// from production to stage, or vice versa.
         /// </summary>
-        /// <param name="environment">An integer value that corresponds to the current envirornment.</param>
+        /// <param name="env">An integer value that corresponds to the current envirornment.</param>
         /// <param name="username">The integration user's username ID in Unifier.</param>
         /// <param name="password">The integration user's password in Unifier.</param>
         /// <returns>
         /// The integer value that returns corresponds to the new environment the user will work in.
         /// The IntegrationUser object instance that returns contains the auth token of the new environment.
         /// </returns>
-        public static (int, IntegrationUser) SwitchEnvironment(int environment, string username, string password)
+        public static (int, IntegrationUser) SwitchEnvironment(int env, string username, string password)
         {
-            // If current environment is production, switch to stage
-            if (environment == 0)
+            // If current env is production, switch to stage
+            if (env == 0)
             {
-                environment = 1;
-                return (environment, new IntegrationUser(environment, username, password));
+                env = 1;
+                return (env, new IntegrationUser(env, username, password));
             }
 
             // Vice versa; if current environment is stage, switch to production
-            environment = 0;
-            return (environment, new IntegrationUser(environment, username, password));
+            env = 0;
+            return (env, new IntegrationUser(env, username, password));
         }
     }
 }
