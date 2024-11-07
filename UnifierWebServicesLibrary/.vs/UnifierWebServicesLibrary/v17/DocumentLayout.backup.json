@@ -3,10 +3,6 @@
   "WorkspaceRootPath": "C:\\Users\\alden.paroni\\Documents\\web-services-git\\c\\UnifierWebServicesLibrary\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{99E5A98A-F357-4C84-94AA-E7DA84968DCE}|UnifierWebServicesLibrary\\UnifierWebServicesLibrary.csproj|c:\\users\\alden.paroni\\documents\\web-services-git\\c\\unifierwebserviceslibrary\\unifierwebserviceslibrary\\webservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{99E5A98A-F357-4C84-94AA-E7DA84968DCE}|UnifierWebServicesLibrary\\UnifierWebServicesLibrary.csproj|solutionrelative:unifierwebserviceslibrary\\webservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{33193D16-8153-4C2E-BB81-9DBAF929EB7C}|ConsoleAppLibrary\\ConsoleAppLibrary.csproj|c:\\users\\alden.paroni\\documents\\web-services-git\\c\\unifierwebserviceslibrary\\consoleapplibrary\\consoleappfunctions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{33193D16-8153-4C2E-BB81-9DBAF929EB7C}|ConsoleAppLibrary\\ConsoleAppLibrary.csproj|solutionrelative:consoleapplibrary\\consoleappfunctions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -17,6 +13,10 @@
     {
       "AbsoluteMoniker": "D:0:0:{F31EA8F6-9B2E-4D91-953B-7E4782A1C4E2}|BusinessProcessLibrary\\BusinessProcessLibrary.csproj|c:\\users\\alden.paroni\\documents\\web-services-git\\c\\unifierwebserviceslibrary\\businessprocesslibrary\\businessprocesses.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F31EA8F6-9B2E-4D91-953B-7E4782A1C4E2}|BusinessProcessLibrary\\BusinessProcessLibrary.csproj|solutionrelative:businessprocesslibrary\\businessprocesses.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{99E5A98A-F357-4C84-94AA-E7DA84968DCE}|UnifierWebServicesLibrary\\UnifierWebServicesLibrary.csproj|c:\\users\\alden.paroni\\documents\\web-services-git\\c\\unifierwebserviceslibrary\\unifierwebserviceslibrary\\webservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{99E5A98A-F357-4C84-94AA-E7DA84968DCE}|UnifierWebServicesLibrary\\UnifierWebServicesLibrary.csproj|solutionrelative:unifierwebserviceslibrary\\webservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,24 +26,24 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 3,
               "Title": "WebServices.cs",
               "DocumentMoniker": "C:\\Users\\alden.paroni\\Documents\\web-services-git\\c\\UnifierWebServicesLibrary\\UnifierWebServicesLibrary\\WebServices.cs",
               "RelativeDocumentMoniker": "UnifierWebServicesLibrary\\WebServices.cs",
               "ToolTip": "C:\\Users\\alden.paroni\\Documents\\web-services-git\\c\\UnifierWebServicesLibrary\\UnifierWebServicesLibrary\\WebServices.cs",
               "RelativeToolTip": "UnifierWebServicesLibrary\\WebServices.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAKQBAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAABcAAAAAAAAAAADwvzAAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-08-12T20:12:07.416Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 2,
               "Title": "BusinessProcesses.cs",
               "DocumentMoniker": "C:\\Users\\alden.paroni\\Documents\\web-services-git\\c\\UnifierWebServicesLibrary\\BusinessProcessLibrary\\BusinessProcesses.cs",
               "RelativeDocumentMoniker": "BusinessProcessLibrary\\BusinessProcesses.cs",
@@ -56,26 +56,26 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "ConsoleAppFunctions.cs",
               "DocumentMoniker": "C:\\Users\\alden.paroni\\Documents\\web-services-git\\c\\UnifierWebServicesLibrary\\ConsoleAppLibrary\\ConsoleAppFunctions.cs",
               "RelativeDocumentMoniker": "ConsoleAppLibrary\\ConsoleAppFunctions.cs",
               "ToolTip": "C:\\Users\\alden.paroni\\Documents\\web-services-git\\c\\UnifierWebServicesLibrary\\ConsoleAppLibrary\\ConsoleAppFunctions.cs",
               "RelativeToolTip": "ConsoleAppLibrary\\ConsoleAppFunctions.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAABVAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABkAAABAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-07-19T22:58:09.791Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
               "Title": "ConsoleApp.cs",
               "DocumentMoniker": "C:\\Users\\alden.paroni\\Documents\\web-services-git\\c\\UnifierWebServicesLibrary\\TestConsoleApp\\ConsoleApp.cs",
               "RelativeDocumentMoniker": "TestConsoleApp\\ConsoleApp.cs",
               "ToolTip": "C:\\Users\\alden.paroni\\Documents\\web-services-git\\c\\UnifierWebServicesLibrary\\TestConsoleApp\\ConsoleApp.cs",
               "RelativeToolTip": "TestConsoleApp\\ConsoleApp.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-08-14T20:54:45.921Z",
               "EditorCaption": ""

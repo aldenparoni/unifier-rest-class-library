@@ -14,8 +14,19 @@ namespace ConsoleAppLibrary
             Console.WriteLine("Welcome to Unifier Web Services!");
 
             // Gather user input to prepare HTTP request to retrieve auth token
+            int env;
             Console.Write("\nEnter 0 for Production, or 1 for Stage: ");
-            int env = Convert.ToInt32(Console.ReadLine());
+            try
+            {
+                env = Convert.ToInt32(Console.ReadLine());
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"\n{ex.Message}");
+                Console.WriteLine("The program will now exit.");
+                Thread.Sleep(2000);
+                return;
+            }
             string username = Environment.GetEnvironmentVariable("unifier_username");
             string password = Environment.GetEnvironmentVariable("unifier_password");
 
@@ -70,7 +81,8 @@ namespace ConsoleAppLibrary
                 }
             }
 
-            Console.WriteLine("\nThank you for using this program!");
+            Console.WriteLine("\nThank you for using this program! The window will close shortly.");
+            Thread.Sleep(2000);
         }
 
         /// <summary>

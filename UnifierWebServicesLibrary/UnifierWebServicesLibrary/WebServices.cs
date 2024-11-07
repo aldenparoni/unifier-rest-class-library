@@ -22,25 +22,30 @@ namespace UnifierWebServicesLibrary
         /// <returns>The bearer token that will be used during the console app's runtime</returns>
         public static string GetAuthToken(int environment, string username, string password)
         {
-            Console.WriteLine("\nPlease wait as we generate an auth token for you...");
             RestClientOptions? options;
 
             // Set environment to Production
             if (environment == 0)
             {
+                Console.WriteLine("\nPlease wait as we generate an auth token for you...");
                 options = new RestClientOptions("https://unifier.oraclecloud.com/hart")
                 {
                     Authenticator = new HttpBasicAuthenticator(username, password)
                 };
             }
             // Otherwise, set environment to Stage
-            else
+            else if (environment == 1)
             {
+                Console.WriteLine("\nPlease wait as we generate an auth token for you...");
                 options = new RestClientOptions("https://unifier.oraclecloud.com/hart/stage")
                 {
                     Authenticator = new HttpBasicAuthenticator(username, password)
                 };
 
+            } else
+            {
+                Console.WriteLine("\nYou entered a number out of range. The program will now close.");
+                return string.Empty;
             }
             
             // Set up the remainder of the request
