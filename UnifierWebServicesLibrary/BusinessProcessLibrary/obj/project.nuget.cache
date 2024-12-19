@@ -1,11 +1,22 @@
 {
   "version": 2,
-  "dgSpecHash": "FWiGnJhbQu0=",
+  "dgSpecHash": "ZnDvg4x7ASk=",
   "success": true,
   "projectFilePath": "C:\\Users\\alden.paroni\\Documents\\web-services-git\\c\\UnifierWebServicesLibrary\\BusinessProcessLibrary\\BusinessProcessLibrary.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\alden.paroni\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512",
     "C:\\Users\\alden.paroni\\.nuget\\packages\\restsharp\\111.3.0\\restsharp.111.3.0.nupkg.sha512"
   ],
-  "logs": []
+  "logs": [
+    {
+      "code": "NU1902",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'RestSharp' 111.3.0 has a known moderate severity vulnerability, https://github.com/advisories/GHSA-4rr6-2v9v-wcpc",
+      "libraryId": "RestSharp",
+      "targetGraphs": [
+        "net8.0"
+      ]
+    }
+  ]
 }
