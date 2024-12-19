@@ -1,11 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "N8Lmm75nQB8=",
+  "dgSpecHash": "ssHKeQ27fas=",
   "success": true,
   "projectFilePath": "C:\\Users\\alden.paroni\\Documents\\web-services-git\\c\\UnifierWebServicesLibrary\\TestConsoleApp\\TestConsoleApp.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\alden.paroni\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512",
-    "C:\\Users\\alden.paroni\\.nuget\\packages\\restsharp\\111.3.0\\restsharp.111.3.0.nupkg.sha512"
+    "C:\\Users\\alden.paroni\\.nuget\\packages\\restsharp\\112.1.0\\restsharp.112.1.0.nupkg.sha512"
   ],
   "logs": []
 }
